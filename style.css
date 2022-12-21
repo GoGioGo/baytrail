@@ -11,6 +11,7 @@
   padding: 10px;
   background-color: #fff8e8;
   border-radius: 4px;
+  display: none;
 }
 
 .baytrail-legend h3 {
@@ -43,4 +44,159 @@
 
 .mapboxgl-ctrl-measure.active {
   background-color: #3388ff;
+}
+
+
+
+/* New Style */
+
+.baytrail-legend-body {
+  position: absolute;
+  padding: 10px;
+  background-color: #fff8e8;
+  border-radius: 4px;
+  z-index: 10;
+  width: 140px;
+  position: absolute;
+  width: 118px !important;
+  left: 26px;
+  bottom: 21px;
+  padding-bottom: 0px;
+  border: 1px solid #B7C1CD;
+}
+
+.baytrail-legend-body h1 {
+  margin: 0;
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  color: #00303F;
+}
+
+.baytrail-legend-body h3 {
+  margin: 0;
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.baytrail-legend-body dl {
+  margin: 0;
+}
+
+.baytrail-legend-body dt {
+  display: inline-block;
+}
+
+.baytrail-legend-body dd {
+  display: inline;
+  margin: 0;
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.baytrail-legend-body dd:after {
+  content: '';
+  display: block;
+}
+
+.baytrail-legendLine {
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.collapsible {
+  background-color: transparent;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  margin: 0;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  color: #00303F;
+  padding: 0px;
+  padding-bottom: 10px;
+  font-family: 'Nunito Sans';
+}
+
+.active, .collapsible:hover {
+  border-bottom: 1px solid #B7C1CD;
+}
+
+.collapsible:after {
+  content: '\02C5';
+  content: url("../public/icons/ic-dropdown-down.svg");
+  color: #00303F;
+  font-weight: bold;
+  float: right;
+  width: 18px;
+  height: 18px;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\02C4";
+  content: url("../public/icons/ic-dropdown-up.svg");
+  width: 18px;
+  height: 18px;
+}
+
+.collapsible-trails {
+  background-color: transparent;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  margin: 0;
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #00303F;
+  padding: 0px;
+  padding: 10px 0px;
+}
+
+.collapsible-trails:after {
+  content: '\02C5';
+  content: url("../public/icons/ic-dropdown-down.svg");
+  color: #00303F;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+  width: 18px;
+  height: 18px;
+}
+
+.content {
+  padding: 0px 0px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.content-trails {
+  padding: 0px 0px;
+  max-height: 211px;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #B7C1CD;
+}
+
+
+@media (min-width: 1900px) and (max-width: 2549px){
 }

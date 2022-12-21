@@ -9,17 +9,90 @@
         html, body { height: 100%; }
         #map { height: 80vh; }
     </style>
+     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
     <link href='style.css' rel='stylesheet' />
 </head>
 
 <body>
-
+  <div class="baytrail-legend-body">
+    <button class="collapsible">Legend</button>
+    <div class="content">
+      <button class="collapsible-trails">TRAILS</button>
+      <div class="content-trails">
+        <h3>Bay Trail</h3>
+        <dl>
+          <dt>
+            <svg width="25" height="5" viewBox="0 0 25 5" class="baytrail-legendLine">
+              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#265a3b"/>
+            </svg>
+          </dt><dd>Paved</dd>
+          <dt>
+            <svg width="25" height="5" viewBox="0 0 25 5" class="baytrail-legendLine">
+              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#70c05e"/>
+            </svg>
+          </dt><dd>Dirt/Gravel</dd>
+          <dt>
+            <svg width="25" height="5" viewBox="0 0 25 5" class="baytrail-legendLine">
+              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#265a3b"/>
+              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:2.5;stroke:#70c05e"/>
+            </svg>
+          </dt><dd>On Street</dd>
+          <dt>
+            <svg width="25" height="5" viewBox="0 0 25 5" class="baytrail-legendLine">
+              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#70c05e;stroke-dasharray:4,3"/>
+            </svg>
+          </dt><dd>Planned</dd>
+        </dl>
+        <h3 style="margin-top: 5px;">Other Trail</h3>
+        <dl>
+          <dt>
+            <svg width="25" height="5" viewBox="0 0 25 5" class="baytrail-legendLine">
+              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#9c70da"/>
+            </svg>
+          </dt><dd>Existing</dd>
+          <dt>
+            <svg width="25" height="5" viewBox="0 0 25 5" class="baytrail-legendLine">
+              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#9c70da;stroke-dasharray:4,3"/>
+            </svg>
+          </dt><dd>Planned</dd>
+        </dl>
+      </div>
+      <button class="collapsible-trails">ICONS</button>
+    </div>
+  </div>
 <div id='map'></div>
 
 <script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
 <script>
+
+var coll = document.getElementsByClassName("collapsible");
+
+for ( var i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+var collTrails = document.getElementsByClassName("collapsible-trails");
+
+for (var i = 0; i < collTrails.length; i++) {
+  collTrails[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight !== null){
+      content.style.maxHeight = content.scrollHeight + "px";
+    } else {
+      content.style.maxHeight = null;
+    } 
+  });
+}
 
 class LegendControl {
   constructor({container=null} = {}) {
