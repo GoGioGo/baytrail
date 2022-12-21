@@ -51,12 +51,10 @@
 /* New Style */
 
 .baytrail-legend-body {
-  position: absolute;
   padding: 10px;
   background-color: #fff8e8;
   border-radius: 4px;
   z-index: 10;
-  width: 140px;
   position: absolute;
   width: 118px !important;
   left: 26px;
@@ -82,6 +80,10 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
+}
+
+.other-title{
+  margin-top: 10px !important;
 }
 
 .baytrail-legend-body dl {
@@ -197,6 +199,91 @@
   border-bottom: 1px solid #B7C1CD;
 }
 
-
 @media (min-width: 1900px) and (max-width: 2549px){
+  .baytrail-legend-body {
+    padding: 13px;
+    background-color: #fff8e8;
+    width: 159px !important;
+    padding-bottom: 0px;
+  }
+  
+  .baytrail-legend-body h1 {
+    font-size: 14px;
+  }
+  
+  .baytrail-legend-body h3 {
+    font-size: 18px;
+  }
+  
+  .other-title{
+    margin-top: 13px  !important;
+  }
+  
+  .baytrail-legend-body dt {
+    margin-top: 8px;
+  }
+  
+  .baytrail-legend-body dd {
+    font-size: 16px;
+  }
+  
+  .collapsible {
+    font-size: 18px;
+    padding-bottom: 13px;
+  }
+  
+  .collapsible-trails {
+    font-size: 16px;
+    padding: 13px 0px;
+  }
+  .content-trails {
+    max-height: 212px;
+  }
+}
+@media (min-width: 2555px) and (max-width: 3799px){
+  .baytrail-legend-body {
+    padding: 17px;
+    background-color: #fff8e8;
+    width: 220px !important;
+    padding-bottom: 0px;
+  }
+  
+  .baytrail-legend-body h1 {
+    font-size: 14px;
+  }
+  
+  .baytrail-legend-body h3 {
+    font-size: 24px;
+  }
+  
+  .other-title{
+    margin-top: 17px !important;
+  }
+  
+  .baytrail-legend-body dt {
+    margin-top: 16px;
+  }
+  
+  .baytrail-legend-body dd {
+    font-size: 21px;
+  }
+  
+  .collapsible {
+    font-size: 24px;
+    padding-bottom: 17px;
+  }
+  
+  .collapsible-trails {
+    font-size: 21px;
+    padding: 17px 0px;
+  }
+
+  .content-trails {
+    padding: 0px 0px;
+    max-height: 320px;
+  }
+
+  .baytrail-legendLine {
+    margin-right: 11px;
+  }
 }
