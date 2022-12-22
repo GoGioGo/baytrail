@@ -2,6 +2,9 @@
   margin-top: 0 !important;
 }
 
+.map{
+  height: 96vh;
+}
 
 .mapboxgl-ctrl-legend {
   pointer-events: none;
@@ -205,9 +208,8 @@
   box-sizing: border-box;
   position: absolute;
   width: 221px;
-  /* height: 230.63px; */
-  left: 50%;
-  top: 25%;
+  left: 68%;
+  top: 45%;
   background: #FFFFFF;
   border: 1px solid #E5EAEC;
   box-shadow: 2px 3px 0px rgb(0 0 0 / 31%);
@@ -263,6 +265,48 @@
   margin-bottom: 0px !important;
 }
 
+/* Welcome Modal */
+
+.welcome-modal{
+  box-sizing: border-box;
+  position: absolute;
+  width: 220px;
+  left: 43%;
+  top: 33%;
+  background: #FFFFFF;
+  border: 1px solid #E5EAEC;
+  box-shadow: 2px 3px 0px rgb(0 0 0 / 31%);
+  z-index: 22;
+  padding: 30px 24px;
+}
+
+.welcome-modal-header{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.welcome-modal button{
+  color: #597882;
+  background: transparent;
+  border: transparent;
+  font-size: 14px;
+  cursor:pointer;
+  cursor: hand;
+}
+
+.welcome-modal p{
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #00303F;
+  margin: 0px;
+  margin-bottom: 10px;
+}
+
+
 @media (min-width: 1900px) and (max-width: 2549px){
   .baytrail-legend-body {
     padding: 13px;
@@ -303,8 +347,34 @@
   .content-trails {
     max-height: 212px;
   }
+  /* Welcome Modal */
+
+  .welcome-modal{
+    width: 293px;
+    padding: 40px 32px;
+  }
+
+  .welcome-modal-header{
+    top: 13px;
+    right: 13px;
+  }
+
+  .welcome-modal button{
+    font-size: 19px;
+  }
+
+  .welcome-modal p{
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    margin: 0px;
+    margin-bottom: 14px;
+  }
 }
 @media (min-width: 2555px) and (max-width: 3799px){
+  .map{
+    height: 97vh;
+  }
   .baytrail-legend-body {
     padding: 17px;
     background-color: #fff8e8;
@@ -349,5 +419,29 @@
 
   .baytrail-legendLine {
     margin-right: 11px;
+  }
+   /* Welcome Modal */
+
+   .welcome-modal{
+    width: 391px;
+    padding: 53px 43px;
+  }
+
+  .welcome-modal-header{
+    top: 18px;
+    right: 18px;
+  }
+
+  .welcome-modal button{
+    font-size: 25px;
+  }
+
+  .welcome-modal p{
+    font-family: 'Nunito Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 20px;
   }
 }
