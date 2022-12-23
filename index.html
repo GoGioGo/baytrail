@@ -656,8 +656,8 @@
           }
         });
         map.on('click', ['bayTrailLayer'], (e) => {
-          let label = `
-          <div class="popup-one">
+          let html = `
+          <div>
                 <h1>BAY TRAIL SEGMENT</h1>
                 <h2>{{location}}</h2>
                 <hr class="green-line">
@@ -672,8 +672,12 @@
                 <p class="opacity-text">SegNo.: {{SEG_NUM}}</p>
               </div>
           `
-          let html = label.replace('{{location}}', e.features[0].properties.Location)
-          html = html.replace('{{SURFACE}}', e.features[0].properties.SURFACE)
+          html = html.replace('{{location}}', e.features[0].properties.Location)
+          if (e.features[0].properties.SURFACE === 'paved') {
+            html = html.replace('{{SURFACE}}', 'Paved')
+          } else {
+            html = html.replace('{{SURFACE}}', e.features[0].properties.SURFACE)
+          }
           html = html.replace('{{length}}', (e.features[0].properties.Length).toFixed(2))
           html = html.replace('{{SEG_NUM}}', e.features[0].properties.SEG_NUM)
           popup.setLngLat(e.lngLat)
