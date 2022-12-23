@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Bay Trail</title>
-    <meta charset='utf-8'>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <style>
-        body { margin: 0; padding: 15px; overflow-y: hidden;}
-        html, body { /*height: 100%;*/ }
-        #map { overflow-y: hidden;}
-    </style>
-     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
-    <link href='style.css' rel='stylesheet' />
+  <title>Bay Trail</title>
+  <meta charset='utf-8'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <style>
+    body {
+      margin: 0;
+      padding: 15px;
+      overflow-y: hidden;
+    }
+
+    html,
+    body {
+      /*height: 100%;*/
+    }
+
+    #map {
+      overflow-y: hidden;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,500,500i,700,700i&display=swap"
+    rel="stylesheet">
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
+  <link href='style.css' rel='stylesheet' />
 </head>
 
 <body>
@@ -29,7 +42,8 @@
   <div class="popup-one">
     <h1>BAY TRAIL SEGMENT</h1>
     <h2>Aquatic Park and Fort Mason</h2>
-    <hr class="green-line"></hr>
+    <hr class="green-line">
+    </hr>
     <p>Paved</p>
     <p>0.36 miles</p>
     <p class="opacity-text">Read more:</p>
@@ -46,101 +60,107 @@
         <dl>
           <dt>
             <svg width="25" height="5" viewBox="0 0 25 5" class="baytrail-legendLine">
-              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#265a3b"/>
+              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#265a3b" />
             </svg>
-          </dt><dd>Paved</dd>
+          </dt>
+          <dd>Paved</dd>
           <dt>
             <svg width="25" height="5" viewBox="0 0 25 5" class="baytrail-legendLine">
-              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#70c05e"/>
+              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#70c05e" />
             </svg>
-          </dt><dd>Dirt/Gravel</dd>
+          </dt>
+          <dd>Dirt/Gravel</dd>
           <dt>
             <svg width="25" height="5" viewBox="0 0 25 5" class="baytrail-legendLine">
-              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#265a3b"/>
-              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:2.5;stroke:#70c05e"/>
+              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#265a3b" />
+              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:2.5;stroke:#70c05e" />
             </svg>
-          </dt><dd>On Street</dd>
+          </dt>
+          <dd>On Street</dd>
           <dt>
             <svg width="25" height="5" viewBox="0 0 25 5" class="baytrail-legendLine">
-              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#70c05e;stroke-dasharray:4,3"/>
+              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#70c05e;stroke-dasharray:4,3" />
             </svg>
-          </dt><dd>Planned</dd>
+          </dt>
+          <dd>Planned</dd>
         </dl>
         <h3 class="other-title">Other Trail</h3>
         <dl>
           <dt>
             <svg width="25" height="5" viewBox="0 0 25 5" class="baytrail-legendLine">
-              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#9c70da"/>
+              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#9c70da" />
             </svg>
-          </dt><dd>Existing</dd>
+          </dt>
+          <dd>Existing</dd>
           <dt>
             <svg width="25" height="5" viewBox="0 0 25 5" class="baytrail-legendLine">
-              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#9c70da;stroke-dasharray:4,3"/>
+              <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#9c70da;stroke-dasharray:4,3" />
             </svg>
-          </dt><dd>Planned</dd>
+          </dt>
+          <dd>Planned</dd>
         </dl>
       </div>
       <button class="collapsible-trails">ICONS</button>
     </div>
   </div>
-<div id='map' class="map"></div>
+  <div id='map' class="map"></div>
 
-<script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
-<script src='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
-<script>
+  <script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
+  <script>
 
-function clouseModalWelcome() {
-  document.getElementById("Welcome").style.display = "none";
-}
+    function clouseModalWelcome() {
+      document.getElementById("Welcome").style.display = "none";
+    }
 
-var coll = document.getElementsByClassName("collapsible");
+    var coll = document.getElementsByClassName("collapsible");
 
-for ( var i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight){
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    } 
-  });
-}
-var collTrails = document.getElementsByClassName("collapsible-trails");
+    for (var i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      });
+    }
+    var collTrails = document.getElementsByClassName("collapsible-trails");
 
-for (var i = 0; i < collTrails.length; i++) {
-  collTrails[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.maxHeight !== null){
-      content.style.maxHeight = content.scrollHeight + "px";
-    } else {
-      content.style.maxHeight = null;
-    } 
-  });
-}
+    for (var i = 0; i < collTrails.length; i++) {
+      collTrails[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight !== null) {
+          content.style.maxHeight = content.scrollHeight + "px";
+        } else {
+          content.style.maxHeight = null;
+        }
+      });
+    }
 
-class LegendControl {
-  constructor({container=null} = {}) {
-    this._container = container;
-  }
+    class LegendControl {
+      constructor({ container = null } = {}) {
+        this._container = container;
+      }
 
-  onAdd(map) {
-    this._map = map;
-    if (!this._container) this._container = this._map.getContainer();
-    this._controlContainer = document.createElement('div');
-    this._controlContainer.classList = `mapboxgl-ctrl mapboxgl-ctrl-group mapboxgl-ctrl-legend`;
-    this.constructUI();
-    return this._controlContainer;
-  }
+      onAdd(map) {
+        this._map = map;
+        if (!this._container) this._container = this._map.getContainer();
+        this._controlContainer = document.createElement('div');
+        this._controlContainer.classList = `mapboxgl-ctrl mapboxgl-ctrl-group mapboxgl-ctrl-legend`;
+        this.constructUI();
+        return this._controlContainer;
+      }
 
-  onRemove() {
-    this._controlContainer.remove();
-    this._map = null;
-  }
+      onRemove() {
+        this._controlContainer.remove();
+        this._map = null;
+      }
 
-  constructUI () {
-    this._controlContainer.innerHTML = `
+      constructUI() {
+        this._controlContainer.innerHTML = `
       <div class="baytrail-legend">
         <h3>Bay Trail</h3>
         <dl>
@@ -185,23 +205,23 @@ class LegendControl {
         </dl>
       </div>
     `;
-  }
-}
+      }
+    }
 
-class MeasurementOutput {
-  constructor({container=null}={}) {
-    this._container = container;
-    this._tempDistance = 0;
-    this._distance = 0;
-  }
+    class MeasurementOutput {
+      constructor({ container = null } = {}) {
+        this._container = container;
+        this._tempDistance = 0;
+        this._distance = 0;
+      }
 
-  onAdd(map) {
-    this._map = map;
-    if (!this._container) this._container = this._map.getContainer();
-    this._controlContainer = document.createElement('div');
-    this._controlContainer.classList = 'mapboxgl-ctrl mapboxgl-ctrl-group';
+      onAdd(map) {
+        this._map = map;
+        if (!this._container) this._container = this._map.getContainer();
+        this._controlContainer = document.createElement('div');
+        this._controlContainer.classList = 'mapboxgl-ctrl mapboxgl-ctrl-group';
 
-    this._controlContainer.style.cssText = `
+        this._controlContainer.style.cssText = `
     padding: 0 8px;
     color: white;
     min-width: 100px;
@@ -210,415 +230,471 @@ class MeasurementOutput {
     box-shadow: 0 0 0 2px rgb(0 0 0/80%);
     `;
 
-    this._controlContainer.textContent = 'Distance: 0.00 miles';
-    return this._controlContainer;
-  }
-
-  onRemove() {
-    this._controlContainer.remove();
-    this._map = null;
-  }
-
-  _updateDistanceText () {
-    const dist = this._distance + this._tempDistance;
-    this._controlContainer.textContent = `Distance: ${dist.toFixed(2)} miles`;
-  }
-
-  set distance (value) {
-    this._distance = value;
-    this._updateDistanceText();
-  }
-  set tmpDistance (value) {
-    this._tempDistance = Number.isNaN(value) ? 0 : value;
-    this._updateDistanceText();
-  }
-}
-
-class MeasureControl {
-  constructor({container=null} = {}) {
-    this._container = container;
-    this._enabled = false;
-    this._coordinates = [];
-
-    // Temporary coordiantes, to be updated quickly as mouse hover moves
-    this._tmpCoordinates = [[0, 0], [0, 0]];
-
-    // When finalized, clicks start a new path
-    this._finalized = false;
-  }
-
-  onAdd(map) {
-    this._map = map;
-    if (!this._container) this._container = this._map.getContainer();
-    this._controlContainer = document.createElement('div');
-    this._controlContainer.classList = 'mapboxgl-ctrl mapboxgl-ctrl-group mapboxgl-ctrl-measure';
-    this.constructUI();
-
-    this._map.addSource('measurement-path', {
-      type: 'geojson',
-      data: {
-        type: 'LineString',
-        coordinates: this._coordinates
+        this._controlContainer.textContent = 'Distance: 0.00 miles';
+        return this._controlContainer;
       }
-    });
 
-    this._map.addSource('measurement-tmp-path', {
-      type: 'geojson',
-      data: {
-        type: 'LineString',
-        coordinates: [[0, 0], [0, 0]],
+      onRemove() {
+        this._controlContainer.remove();
+        this._map = null;
       }
-    });
 
-    this._map.addSource('measurement-vertices', {
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: this._coordinates.map((coordinates, id) => ({
-          type: 'Feature',
-          properties: {
-            id: id
+      _updateDistanceText() {
+        const dist = this._distance + this._tempDistance;
+        this._controlContainer.textContent = `Distance: ${dist.toFixed(2)} miles`;
+      }
+
+      set distance(value) {
+        this._distance = value;
+        this._updateDistanceText();
+      }
+      set tmpDistance(value) {
+        this._tempDistance = Number.isNaN(value) ? 0 : value;
+        this._updateDistanceText();
+      }
+    }
+
+    class MeasureControl {
+      constructor({ container = null } = {}) {
+        this._container = container;
+        this._enabled = false;
+        this._coordinates = [];
+
+        // Temporary coordiantes, to be updated quickly as mouse hover moves
+        this._tmpCoordinates = [[0, 0], [0, 0]];
+
+        // When finalized, clicks start a new path
+        this._finalized = false;
+      }
+
+      onAdd(map) {
+        this._map = map;
+        if (!this._container) this._container = this._map.getContainer();
+        this._controlContainer = document.createElement('div');
+        this._controlContainer.classList = 'mapboxgl-ctrl mapboxgl-ctrl-group mapboxgl-ctrl-measure';
+        this.constructUI();
+
+        this._map.addSource('measurement-path', {
+          type: 'geojson',
+          data: {
+            type: 'LineString',
+            coordinates: this._coordinates
+          }
+        });
+
+        this._map.addSource('measurement-tmp-path', {
+          type: 'geojson',
+          data: {
+            type: 'LineString',
+            coordinates: [[0, 0], [0, 0]],
+          }
+        });
+
+        this._map.addSource('measurement-vertices', {
+          type: 'geojson',
+          data: {
+            type: 'FeatureCollection',
+            features: this._coordinates.map((coordinates, id) => ({
+              type: 'Feature',
+              properties: {
+                id: id
+              },
+              geometry: {
+                type: 'Point',
+                coordinates
+              }
+            }))
+          }
+        });
+
+        this._map.addLayer({
+          id: 'measurement-path-vertices-border',
+          source: 'measurement-vertices',
+          type: 'circle',
+          paint: {
+            'circle-radius': [
+              'case',
+              ['boolean', ['feature-state', 'hover'], false],
+              7,
+              5
+            ],
+            'circle-color': '#112288'
+          }
+        });
+
+        this._map.addLayer({
+          id: 'measurement-path-line-casing',
+          source: 'measurement-path',
+          type: 'line',
+          paint: {
+            'line-width': 5,
+            'line-color': '#112288'
           },
-          geometry: {
-            type: 'Point',
-            coordinates
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round',
           }
-        }))
-      }
-    });
-
-    this._map.addLayer({
-      id: 'measurement-path-vertices-border',
-      source: 'measurement-vertices',
-      type: 'circle',
-      paint: {
-        'circle-radius': [
-          'case',
-          ['boolean', ['feature-state', 'hover'], false],
-          7,
-          5
-        ],
-        'circle-color': '#112288'
-      }
-    });
-
-    this._map.addLayer({
-      id: 'measurement-path-line-casing',
-      source: 'measurement-path',
-      type: 'line',
-      paint: {
-        'line-width': 5,
-        'line-color': '#112288'
-      },
-      layout: {
-        'line-join': 'round',
-        'line-cap': 'round',
-      }
-    });
-
-    this._map.addLayer({
-      id: 'measurement-path-line',
-      source: 'measurement-path',
-      type: 'line',
-      paint: {
-        'line-width': 3,
-        'line-color': '#3388ff'
-      },
-      layout: {
-        'line-join': 'round',
-        'line-cap': 'round',
-      }
-    });
-
-    this._map.addLayer({
-      id: 'measurement-tmp-path-line',
-      source: 'measurement-tmp-path',
-      type: 'line',
-      paint: {
-        'line-width': 3,
-        'line-color': '#3388ff',
-        'line-dasharray': [1, 2],
-      },
-      layout: {
-        'line-join': 'round',
-        'line-cap': 'round',
-      }
-    });
-
-    this._map.addLayer({
-      id: 'measurement-path-vertices',
-      source: 'measurement-vertices',
-      type: 'circle',
-      paint: {
-        'circle-radius': [
-          'case',
-          ['boolean', ['feature-state', 'hover'], false],
-          6,
-          4
-        ],
-        'circle-color': 'white'
-      },
-      layout: {
-      }
-    });
-
-    return this._controlContainer;
-  }
-
-  onRemove() {
-    this._disableMeasurement();
-    this._map.removeLayer('measurement-path-line');
-    this._map.removeLayer('measurement-path-line-casing');
-    this._map.removeSource('measurement-path');
-    this._controlContainer.remove();
-    this._map = null;
-  }
-
-  constructUI () {
-    const toggle = document.createElement('button');
-    toggle.setAttribute('title', 'Measure path');
-    const icon = this.createIcon();
-    toggle.appendChild(icon);
-
-    toggle.addEventListener('click', this._toggleMeasurement.bind(this));
-
-    this._controlContainer.appendChild(toggle);
-  }
-
-  createIcon () {
-    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute('d', 'M6,2L18,14L14,18L2,6Z M16,12L14,14 M14,10L13,11 M12,8L10,10 M10,6L9,7 M8,4L6,6');
-    path.setAttribute('stroke-width', '0.8px');
-    path.setAttribute('stroke', 'black');
-    path.setAttribute('fill', '#e0e0ee');
-    svg.setAttribute('width', 24);
-    svg.setAttribute('height', 24);
-    svg.setAttribute('viewBox', '0 0 20 20');
-    svg.appendChild(path);
-    return svg;
-  }
-
-  finalizePath () {
-    this._finalized = true;
-    this._tmpCoordinates = [[0, 0], [0, 0]];
-    this._measurementOutput.tmpDistance = 0;
-    this._updateTmpPath();
-    this._updatePath();
-  }
-
-  newPath () {
-    this._finalized = false;
-    this._coordinates.length = 0;
-  }
-
-  _toggleMeasurement () {
-    this._enabled = !this._enabled;
-    this._coordinates.length = 0;
-
-    if (this._enabled) {
-      this._enableMeasurement();
-    } else {
-      this._disableMeasurement();
-    }
-    this._setCursor();
-  }
-
-  _enableMeasurement () {
-    this._controlContainer.classList.add('active');
-    this._map.setLayoutProperty('measurement-path-line', 'visibility', 'visible');
-    this._map.setLayoutProperty('measurement-path-line-casing', 'visibility', 'visible');
-    this._map.setLayoutProperty('measurement-tmp-path-line', 'visibility', 'none');
-    this._tmpCoordinates = [[NaN, NaN], [0, 0]]
-
-    this._handleClick = event => {
-      event.preventDefault();
-
-      if (this._finalized) {
-        this.newPath();
-      } else {
-        // If the path is not finalized, then a click on the last-appended point finalizes the path
-        const features = map.queryRenderedFeatures(event.point, {
-          layers: ['measurement-path-vertices']
         });
 
-        // If the clicked point is the last point of the path, then close the path
-        for (const feature of features) {
-          if (feature.id === this._coordinates.length - 1) {
-            this.finalizePath();
-            return;
+        this._map.addLayer({
+          id: 'measurement-path-line',
+          source: 'measurement-path',
+          type: 'line',
+          paint: {
+            'line-width': 3,
+            'line-color': '#3388ff'
+          },
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round',
           }
+        });
+
+        this._map.addLayer({
+          id: 'measurement-tmp-path-line',
+          source: 'measurement-tmp-path',
+          type: 'line',
+          paint: {
+            'line-width': 3,
+            'line-color': '#3388ff',
+            'line-dasharray': [1, 2],
+          },
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round',
+          }
+        });
+
+        this._map.addLayer({
+          id: 'measurement-path-vertices',
+          source: 'measurement-vertices',
+          type: 'circle',
+          paint: {
+            'circle-radius': [
+              'case',
+              ['boolean', ['feature-state', 'hover'], false],
+              6,
+              4
+            ],
+            'circle-color': 'white'
+          },
+          layout: {
+          }
+        });
+
+        return this._controlContainer;
+      }
+
+      onRemove() {
+        this._disableMeasurement();
+        this._map.removeLayer('measurement-path-line');
+        this._map.removeLayer('measurement-path-line-casing');
+        this._map.removeSource('measurement-path');
+        this._controlContainer.remove();
+        this._map = null;
+      }
+
+      constructUI() {
+        const toggle = document.createElement('button');
+        toggle.setAttribute('title', 'Measure path');
+        const icon = this.createIcon();
+        toggle.appendChild(icon);
+
+        toggle.addEventListener('click', this._toggleMeasurement.bind(this));
+
+        this._controlContainer.appendChild(toggle);
+      }
+
+      createIcon() {
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', 'M6,2L18,14L14,18L2,6Z M16,12L14,14 M14,10L13,11 M12,8L10,10 M10,6L9,7 M8,4L6,6');
+        path.setAttribute('stroke-width', '0.8px');
+        path.setAttribute('stroke', 'black');
+        path.setAttribute('fill', '#e0e0ee');
+        svg.setAttribute('width', 24);
+        svg.setAttribute('height', 24);
+        svg.setAttribute('viewBox', '0 0 20 20');
+        svg.appendChild(path);
+        return svg;
+      }
+
+      finalizePath() {
+        this._finalized = true;
+        this._tmpCoordinates = [[0, 0], [0, 0]];
+        this._measurementOutput.tmpDistance = 0;
+        this._updateTmpPath();
+        this._updatePath();
+      }
+
+      newPath() {
+        this._finalized = false;
+        this._coordinates.length = 0;
+      }
+
+      _toggleMeasurement() {
+        this._enabled = !this._enabled;
+        this._coordinates.length = 0;
+
+        if (this._enabled) {
+          this._enableMeasurement();
+        } else {
+          this._disableMeasurement();
+        }
+        this._setCursor();
+      }
+
+      _enableMeasurement() {
+        this._controlContainer.classList.add('active');
+        this._map.setLayoutProperty('measurement-path-line', 'visibility', 'visible');
+        this._map.setLayoutProperty('measurement-path-line-casing', 'visibility', 'visible');
+        this._map.setLayoutProperty('measurement-tmp-path-line', 'visibility', 'none');
+        this._tmpCoordinates = [[NaN, NaN], [0, 0]]
+
+        this._handleClick = event => {
+          event.preventDefault();
+
+          if (this._finalized) {
+            this.newPath();
+          } else {
+            // If the path is not finalized, then a click on the last-appended point finalizes the path
+            const features = map.queryRenderedFeatures(event.point, {
+              layers: ['measurement-path-vertices']
+            });
+
+            // If the clicked point is the last point of the path, then close the path
+            for (const feature of features) {
+              if (feature.id === this._coordinates.length - 1) {
+                this.finalizePath();
+                return;
+              }
+            }
+          }
+
+          // If not a click on a point, then proceed as normal with appending a point to the
+          // measurement path
+          this._coordinates.push([event.lngLat.lng, event.lngLat.lat]);
+          this._tmpCoordinates = [
+            [event.lngLat.lng, event.lngLat.lat],
+            [event.lngLat.lng, event.lngLat.lat]
+          ];
+          this._measurementOutput.tmpDistance = 0;
+          this._updatePath();
+          this._updateTmpPath();
+          this._setCursor();
+          this._map.setLayoutProperty('measurement-tmp-path-line', 'visibility', 'visible');
+
+          map.setFeatureState({
+            source: 'measurement-vertices',
+            id: this._coordinates.length - 1
+          }, {
+            hover: true
+          });
+        };
+
+        const activeHoverFeatureIds = [];
+        this._handleMouseMove = event => {
+          const features = map.queryRenderedFeatures(event.point, {
+            layers: ['measurement-path-vertices']
+          });
+          for (const feature of features) {
+            activeHoverFeatureIds.push(feature.id);
+            map.setFeatureState({
+              source: 'measurement-vertices',
+              id: feature.id
+            }, {
+              hover: true
+            });
+          }
+
+          if (this._finalized) return;
+          this._tmpCoordinates[1] = [event.lngLat.lng, event.lngLat.lat];
+          this._measurementOutput.tmpDistance = turf.length({
+            type: 'LineString',
+            coordinates: this._tmpCoordinates
+          });
+          this._updateTmpPath();
+        };
+
+        this._handleLeaveFeature = event => {
+          while (activeHoverFeatureIds.length) {
+            const id = activeHoverFeatureIds.pop();
+            map.setFeatureState({
+              source: 'measurement-vertices',
+              id: id
+            }, {
+              hover: false
+            });
+          }
+        };
+
+        this._measurementOutput = new MeasurementOutput();
+        this._map.addControl(this._measurementOutput, 'top-right');
+
+        this._map.on('click', this._handleClick);
+        this._map.on('mousemove', this._handleMouseMove);
+        this._map.on('mouseleave', 'measurement-path-vertices', this._handleLeaveFeature);
+      }
+
+      _disableMeasurement() {
+        this._controlContainer.classList.remove('active');
+        this._map.off('click', this._handleClick);
+        this._map.off('mousemove', this._handleMouseMove);
+        this._map.setLayoutProperty('measurement-path-line', 'visibility', 'none');
+        this._map.setLayoutProperty('measurement-path-line-casing', 'visibility', 'none');
+        this._map.setLayoutProperty('measurement-tmp-path-line', 'visibility', 'none');
+        this._map.removeControl(this._measurementOutput);
+        this._measurementOutput = null;
+        this._setCursor();
+        this._updatePath();
+      }
+
+      _updateTmpPath() {
+        this._map.getSource('measurement-tmp-path').setData({
+          type: 'LineString',
+          coordinates: this._tmpCoordinates
+        });
+        map.triggerRepaint();
+      }
+
+      _updatePath() {
+        const lineString = {
+          type: 'LineString',
+          coordinates: this._coordinates
+        }
+        this._map.getSource('measurement-path').setData(lineString);
+
+        this._map.getSource('measurement-vertices').setData({
+          type: 'FeatureCollection',
+          features: this._coordinates.map((coordinates, id) => ({
+            type: 'Feature',
+            id: id,
+            properties: {},
+            geometry: {
+              type: 'Point',
+              coordinates
+            }
+          }))
+        });
+
+        if (this._measurementOutput) this._measurementOutput.distance = turf.length(lineString);
+        map.triggerRepaint();
+      }
+
+      _setCursor() {
+        if (this._enabled) {
+          map.getCanvas().style.cursor = 'crosshair';
+        } else {
+          map.getCanvas().style.cursor = '';
         }
       }
+    }
 
-      // If not a click on a point, then proceed as normal with appending a point to the
-      // measurement path
-      this._coordinates.push([event.lngLat.lng, event.lngLat.lat]);
-      this._tmpCoordinates = [
-        [event.lngLat.lng, event.lngLat.lat],
-        [event.lngLat.lng, event.lngLat.lat]
-      ];
-      this._measurementOutput.tmpDistance = 0;
-      this._updatePath();
-      this._updateTmpPath();
-      this._setCursor();
-      this._map.setLayoutProperty('measurement-tmp-path-line', 'visibility', 'visible');
+    class BayTrailMap {
+      constructor({ mapboxgl, accessToken, container }) {
+        this.mapboxgl = mapboxgl;
+        this.map = window.map = new this.mapboxgl.Map({
+          container,
+          accessToken,
+          style: 'mapbox://styles/rreusser/cl8opuxyd000014qgjao6pono',
+          hash: false,
+          logoPosition: 'top-right',
+          bounds: [[-122.75, 37.3], [-121.8, 38.3]],
+          fitBoundsOptions: {
+            padding: 30
+          },
+          maxBounds: [
+            [-126, 35],
+            [-119, 41]
+          ],
+        });
 
-      map.setFeatureState({
-        source: 'measurement-vertices',
-        id: this._coordinates.length - 1
-      }, {
-        hover: true
-      });
-    };
+        map.once('load', () => {
+          this.popup = new this.mapboxgl.Popup()
 
-    const activeHoverFeatureIds = [];
-    this._handleMouseMove = event => {
-      const features = map.queryRenderedFeatures(event.point, {
-        layers: ['measurement-path-vertices']
-      });
-      for (const feature of features) {
-        activeHoverFeatureIds.push(feature.id);
-        map.setFeatureState({
-          source: 'measurement-vertices',
-          id: feature.id
-        }, {
-          hover: true
+          this.metricScaleControl = new this.mapboxgl.ScaleControl({ unit: 'metric' });
+          this.imperialScaleControl = new this.mapboxgl.ScaleControl({ unit: 'imperial' });
+          map.addControl(this.metricScaleControl, 'top-right');
+          map.addControl(this.imperialScaleControl, 'top-right');
+
+          this.navControl = new this.mapboxgl.NavigationControl()
+          map.addControl(this.navControl, 'top-left');
+
+          this.locateUserControl = new this.mapboxgl.GeolocateControl();
+          map.addControl(this.locateUserControl, 'top-left');
+
+          this.fullscreenControl = new this.mapboxgl.FullscreenControl();
+          map.addControl(this.fullscreenControl, 'top-left');
+
+          this.legendControl = new LegendControl();
+          map.addControl(this.legendControl, 'bottom-left');
+
+          this.measureControl = new MeasureControl();
+          map.addControl(this.measureControl, 'top-left');
+
+          addSource(this.popup);
         });
       }
+    }
 
-      if (this._finalized) return;
-      this._tmpCoordinates[1] = [event.lngLat.lng, event.lngLat.lat];
-      this._measurementOutput.tmpDistance = turf.length({
-        type: 'LineString',
-        coordinates: this._tmpCoordinates
-      });
-      this._updateTmpPath();
-    };
-
-    this._handleLeaveFeature = event => {
-      while (activeHoverFeatureIds.length) {
-        const id = activeHoverFeatureIds.pop();
-        map.setFeatureState({
-          source: 'measurement-vertices',
-          id: id
-        }, {
-          hover: false
+    function addSource(popup) {
+      responseGeojson().then(res => {
+        map.addSource('sf_baytrail', {
+          type: 'geojson',
+          data: res
         });
-      }
-    };
+        map.addLayer({
+          id: 'bayTrailLayer',
+          source: 'sf_baytrail',
+          type: 'line',
+          paint: {
+            'line-width': 3,
+            'line-color': 'transparent'
+          },
+          layout: {
 
-    this._measurementOutput = new MeasurementOutput();
-    this._map.addControl(this._measurementOutput, 'top-right');
-
-    this._map.on('click', this._handleClick);
-    this._map.on('mousemove', this._handleMouseMove);
-    this._map.on('mouseleave', 'measurement-path-vertices', this._handleLeaveFeature);
-  }
-
-  _disableMeasurement () {
-    this._controlContainer.classList.remove('active');
-    this._map.off('click', this._handleClick);
-    this._map.off('mousemove', this._handleMouseMove);
-    this._map.setLayoutProperty('measurement-path-line', 'visibility', 'none');
-    this._map.setLayoutProperty('measurement-path-line-casing', 'visibility', 'none');
-    this._map.setLayoutProperty('measurement-tmp-path-line', 'visibility', 'none');
-    this._map.removeControl(this._measurementOutput);
-    this._measurementOutput = null;
-    this._setCursor();
-    this._updatePath();
-  }
-
-  _updateTmpPath () {
-    this._map.getSource('measurement-tmp-path').setData({
-      type: 'LineString',
-      coordinates: this._tmpCoordinates
-    });
-    map.triggerRepaint();
-  }
-
-  _updatePath () {
-    const lineString = {
-      type: 'LineString',
-      coordinates: this._coordinates
+          }
+        });
+        map.on('click', ['bayTrailLayer'], (e) => {
+          let label = `
+          <div class="popup-one">
+                <h1>BAY TRAIL SEGMENT</h1>
+                <h2>{{location}}</h2>
+                <hr class="green-line">
+                </hr>
+                <p>{{SURFACE}}</p>
+                <p>{{length}} miles</p>
+                <p class="opacity-text">Read more:</p>
+                <p class="more-text">Map By Numbers: Map 1 &#8213;
+                  San Fransisco Northern
+                  Waterfront</p>
+                <p class="opacity-text">SegNo.: {{SEG_NUM}}</p>
+              </div>
+          `
+          let html = label.replace('{{location}}', e.features[0].properties.Location)
+          html = html.replace('{{SURFACE}}', e.features[0].properties.SURFACE)
+          html = html.replace('{{length}}', (e.features[0].properties.Length).toFixed(2))
+          html = html.replace('{{SEG_NUM}}', e.features[0].properties.SEG_NUM)
+          console.log(e.features[0].properties);
+          popup.setLngLat(e.lngLat)
+            .setHTML(html)
+            .addTo(map)
+        })
+      })
     }
-    this._map.getSource('measurement-path').setData(lineString);
 
-    this._map.getSource('measurement-vertices').setData({
-      type: 'FeatureCollection',
-      features: this._coordinates.map((coordinates, id) => ({
-        type: 'Feature',
-        id: id,
-        properties: {},
-        geometry: {
-          type: 'Point',
-          coordinates
-        }
-      }))
-    });
-
-    if (this._measurementOutput) this._measurementOutput.distance = turf.length(lineString);
-    map.triggerRepaint();
-  }
-
-  _setCursor () {
-    if (this._enabled) {
-      map.getCanvas().style.cursor = 'crosshair';
-    } else {
-      map.getCanvas().style.cursor = '';
+    function responseGeojson() {
+      return (fetch('sf_baytrail_aug2022_wgs84.geojson')
+        .then(res => res.json()))
     }
-  }
-}
 
-class BayTrailMap {
-  constructor({mapboxgl, accessToken, container}) {
-    this.mapboxgl = mapboxgl;
-    this.map = window.map = new this.mapboxgl.Map({
-      container,
-      accessToken,
-      style: 'mapbox://styles/rreusser/cl8opuxyd000014qgjao6pono',
-      hash: false,
-      logoPosition: 'top-right',
-      bounds: [[-122.75, 37.3], [-121.8, 38.3]],
-      fitBoundsOptions: {
-        padding: 30
-      },
-      maxBounds: [
-        [-126, 35],
-        [-119, 41]
-      ],
+    const bayTrailMap = new BayTrailMap({
+      mapboxgl: window.mapboxgl,
+      container: document.getElementById('map'),
+      accessToken: 'pk.eyJ1IjoiYmF5dHJhaWwiLCJhIjoiY2w4MHM3ZGF4MDh2czNubGpocDhybGIzcyJ9.rHx3m7svLRuRY33DhysV1g'
     });
 
-    map.once('load', () => {
-      this.metricScaleControl = new this.mapboxgl.ScaleControl({unit: 'metric'});
-      this.imperialScaleControl = new this.mapboxgl.ScaleControl({unit: 'imperial'});
-      map.addControl(this.metricScaleControl, 'top-right');
-      map.addControl(this.imperialScaleControl, 'top-right');
-
-      this.navControl = new this.mapboxgl.NavigationControl()
-      map.addControl(this.navControl, 'top-left');
-
-      this.locateUserControl = new this.mapboxgl.GeolocateControl();
-      map.addControl(this.locateUserControl, 'top-left');
-
-      this.fullscreenControl = new this.mapboxgl.FullscreenControl();
-      map.addControl(this.fullscreenControl, 'top-left');
-
-      this.legendControl = new LegendControl();
-      map.addControl(this.legendControl, 'bottom-left');
-
-      this.measureControl = new MeasureControl();
-      map.addControl(this.measureControl, 'top-left');
-    });
-  }
-}
-
-const bayTrailMap = new BayTrailMap({
-  mapboxgl: window.mapboxgl,
-  container: document.getElementById('map'),
-  accessToken: 'pk.eyJ1IjoiYmF5dHJhaWwiLCJhIjoiY2w4MHM3ZGF4MDh2czNubGpocDhybGIzcyJ9.rHx3m7svLRuRY33DhysV1g'
-});
-
-</script>
+  </script>
 </body>
+
 </html>
