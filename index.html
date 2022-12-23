@@ -668,6 +668,7 @@
                 <p class="more-text">Map By Numbers: Map 1 &#8213;
                   San Fransisco Northern
                   Waterfront</p>
+                  <p />
                 <p class="opacity-text">SegNo.: {{SEG_NUM}}</p>
               </div>
           `
@@ -675,7 +676,6 @@
           html = html.replace('{{SURFACE}}', e.features[0].properties.SURFACE)
           html = html.replace('{{length}}', (e.features[0].properties.Length).toFixed(2))
           html = html.replace('{{SEG_NUM}}', e.features[0].properties.SEG_NUM)
-          console.log(e.features[0].properties);
           popup.setLngLat(e.lngLat)
             .setHTML(html)
             .addTo(map)
