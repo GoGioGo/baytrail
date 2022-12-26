@@ -1,8 +1,8 @@
-.mapboxgl-ctrl-scale+.mapboxgl-ctrl-scale {
+.mapboxgl-ctrl-scale + .mapboxgl-ctrl-scale {
   margin-top: 0 !important;
 }
 
-.map {
+.map{
   height: 96vh;
 }
 
@@ -85,7 +85,7 @@
   line-height: 16px;
 }
 
-.other-title {
+.other-title{
   margin-top: 10px !important;
 }
 
@@ -135,8 +135,7 @@
   font-family: 'Nunito Sans';
 }
 
-.active,
-.collapsible:hover {
+.active, .collapsible:hover {
   border-bottom: 1px solid #B7C1CD;
 }
 
@@ -186,6 +185,34 @@
   width: 18px;
   height: 18px;
 }
+.collapsible-icons {
+  background-color: transparent;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  margin: 0;
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #00303F;
+  padding: 0px;
+  padding: 10px 0px;
+}
+
+.collapsible-icons:after {
+  content: '\02C5';
+  content: url("../public/icons/ic-dropdown-down.svg");
+  color: #00303F;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+  width: 18px;
+  height: 18px;
+}
 
 .content {
   padding: 0px 0px;
@@ -205,20 +232,19 @@
 
 /* Pop - up 1*/
 
-.mapboxgl-popup-content {
+.popup-one{
   box-sizing: border-box;
-  position: static;
+  position: absolute;
   width: 221px;
   left: 68%;
   top: 45%;
   background: #FFFFFF;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #E5EAEC;
   box-shadow: 2px 3px 0px rgb(0 0 0 / 31%);
-  /*z-index: 100;*/
+  z-index: 10;
   padding: 20px 15px;
 }
-
-.mapboxgl-popup-content h1 {
+.popup-one h1{
   font-family: 'Nunito Sans';
   font-style: normal;
   font-weight: 400;
@@ -228,8 +254,7 @@
   margin: 0px;
   margin-bottom: 4px;
 }
-
-.mapboxgl-popup-content h2 {
+.popup-one h2{
   font-family: 'Nunito Sans';
   font-style: normal;
   font-weight: 700;
@@ -239,8 +264,7 @@
   margin: 0px;
   margin-bottom: 11px;
 }
-
-.green-line {
+.green-line{
   border: none;
   width: 60px;
   border: 2.5px solid #34593E;
@@ -250,8 +274,7 @@
   margin: 0px;
   margin-bottom: 8px;
 }
-
-.mapboxgl-popup-content p {
+.popup-one p{
   font-family: 'Nunito Sans';
   font-style: normal;
   font-weight: 400;
@@ -261,25 +284,23 @@
   margin: 0px;
   margin-bottom: 8px;
 }
-
-.opacity-text {
+.opacity-text{
   font-weight: 300 !important;
   margin-bottom: 2px !important;
 }
-
-.more-text {
+.more-text{
   color: #007CAD !important;
   margin-bottom: 0px !important;
 }
 
 /* Welcome Modal */
 
-.welcome-modal {
+.welcome-modal{
   box-sizing: border-box;
   position: absolute;
   width: 220px;
-  left: 43%;
-  top: 33%;
+  left: calc(50% - 110px);
+  top: calc(50% - 84px);
   background: #FFFFFF;
   border: 1px solid #E5EAEC;
   box-shadow: 2px 3px 0px rgb(0 0 0 / 31%);
@@ -287,22 +308,22 @@
   padding: 30px 24px;
 }
 
-.welcome-modal-header {
+.welcome-modal-header{
   position: absolute;
   top: 10px;
   right: 10px;
 }
 
-.welcome-modal button {
+.welcome-modal button{
   color: #597882;
   background: transparent;
   border: transparent;
   font-size: 14px;
-  cursor: pointer;
+  cursor:pointer;
   cursor: hand;
 }
 
-.welcome-modal p {
+.welcome-modal p{
   font-family: 'Nunito Sans';
   font-style: normal;
   font-weight: 400;
@@ -314,65 +335,66 @@
 }
 
 
-@media (min-width: 1900px) and (max-width: 2549px) {
+@media (min-width: 1900px) and (max-width: 2549px){
   .baytrail-legend-body {
     padding: 13px;
     background-color: #fff8e8;
     width: 159px !important;
     padding-bottom: 0px;
   }
-
+  
   .baytrail-legend-body h1 {
     font-size: 14px;
   }
-
+  
   .baytrail-legend-body h3 {
     font-size: 18px;
   }
-
-  .other-title {
-    margin-top: 13px !important;
+  
+  .other-title{
+    margin-top: 13px  !important;
   }
-
+  
   .baytrail-legend-body dt {
     margin-top: 8px;
   }
-
+  
   .baytrail-legend-body dd {
     font-size: 16px;
   }
-
+  
   .collapsible {
     font-size: 18px;
     padding-bottom: 13px;
   }
-
+  
   .collapsible-trails {
     font-size: 16px;
     padding: 13px 0px;
   }
-
   .content-trails {
     max-height: 212px;
   }
-
   /* Welcome Modal */
 
-  .welcome-modal {
+  .welcome-modal{
     width: 293px;
     padding: 40px 32px;
+    left: calc(50% - 146.5px );
+    top:calc(50% - 111px);
+
   }
 
-  .welcome-modal-header {
+  .welcome-modal-header{
     top: 13px;
     right: 13px;
   }
 
-  .welcome-modal button {
+  .welcome-modal button{
     font-size: 19px;
   }
 
-  .welcome-modal p {
+  .welcome-modal p{
     font-weight: 400;
     font-size: 18px;
     line-height: 21px;
@@ -380,44 +402,42 @@
     margin-bottom: 14px;
   }
 }
-
-@media (min-width: 2555px) and (max-width: 3799px) {
-  .map {
+@media (min-width: 2555px) and (max-width: 5799px){
+  .map{
     height: 97vh;
   }
-
   .baytrail-legend-body {
     padding: 17px;
     background-color: #fff8e8;
     width: 220px !important;
     padding-bottom: 0px;
   }
-
+  
   .baytrail-legend-body h1 {
     font-size: 14px;
   }
-
+  
   .baytrail-legend-body h3 {
     font-size: 24px;
   }
-
-  .other-title {
+  
+  .other-title{
     margin-top: 17px !important;
   }
-
+  
   .baytrail-legend-body dt {
     margin-top: 16px;
   }
-
+  
   .baytrail-legend-body dd {
     font-size: 21px;
   }
-
+  
   .collapsible {
     font-size: 24px;
     padding-bottom: 17px;
   }
-
+  
   .collapsible-trails {
     font-size: 21px;
     padding: 17px 0px;
@@ -431,29 +451,41 @@
   .baytrail-legendLine {
     margin-right: 11px;
   }
+   /* Welcome Modal */
 
-  /* Welcome Modal */
-
-  .welcome-modal {
+   .welcome-modal{
     width: 391px;
     padding: 53px 43px;
+    left: calc(50% - 195.5px);
+    top: calc(50% - 148px);
   }
 
-  .welcome-modal-header {
+  .welcome-modal-header{
     top: 18px;
     right: 18px;
   }
 
-  .welcome-modal button {
+  .welcome-modal button{
     font-size: 25px;
   }
 
-  .welcome-modal p {
+  .welcome-modal p{
     font-family: 'Nunito Sans';
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
     line-height: 28px;
     margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 900px){
+  .welcome-modal{
+    top: 66px;
+  }
+}
+@media (min-width: 901px) and (max-width: 1200px){
+  .welcome-modal{
+    top: 153px;
   }
 }
