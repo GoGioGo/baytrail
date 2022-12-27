@@ -21,6 +21,7 @@
       overflow-y: hidden;
     }
   </style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,500,500i,700,700i&display=swap"
     rel="stylesheet">
   <link href='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
@@ -39,6 +40,116 @@
       Click or tap trail segments for length, type, and local area information.
     </p>
   </div>
+  <div id="accordion" class="baytrail-legend-body">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class=" collapsible" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"  aria-controls="collapseOne">
+            Legend
+          </button>
+        </h5>
+      </div>
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+          <div id="accordion">
+            <div class="card">
+              <div class="card-header" id="headingOne1">
+                <h5 class="mb-0">
+                  <button class="collapsible-trails" data-toggle="collapse" data-target="#collapseOne1"  aria-expanded="true" aria-controls="collapseOne1">
+                    TRAILS
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseOne1" class="collapse show" aria-labelledby="headingOne1" data-parent="#accordion1">
+                <div class="card-body">
+                  <div class="content-trails">
+                    <h3>Bay Trail</h3>
+                    <dl>
+                      <dt>
+                        <svg width="25" height="5" viewBox="0 0 25 5" class="baytrail-legendLine">
+                          <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#265a3b" />
+                        </svg>
+                      </dt>
+                      <dd>Paved</dd>
+                      <dt>
+                        <svg width="25" height="5" viewBox="0 0 25 5" class="baytrail-legendLine">
+                          <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#70c05e" />
+                        </svg>
+                      </dt>
+                      <dd>Dirt/Gravel</dd>
+                      <dt>
+                        <svg width="25" height="5" viewBox="0 0 25 5" class="baytrail-legendLine">
+                          <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#265a3b" />
+                          <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:2.5;stroke:#70c05e" />
+                        </svg>
+                      </dt>
+                      <dd>On Street</dd>
+                      <dt>
+                        <svg width="25" height="5" viewBox="0 0 25 5" class="baytrail-legendLine">
+                          <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#70c05e;stroke-dasharray:4,3" />
+                        </svg>
+                      </dt>
+                      <dd>Planned</dd>
+                    </dl>
+                    <h3 class="other-title">Other Trail</h3>
+                    <dl>
+                      <dt>
+                        <svg width="25" height="5" viewBox="0 0 25 5" class="baytrail-legendLine">
+                          <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#9c70da" />
+                        </svg>
+                      </dt>
+                      <dd>Existing</dd>
+                      <dt>
+                        <svg width="25" height="5" viewBox="0 0 25 5" class="baytrail-legendLine">
+                          <line x1="0" x2="25" y1="2.5" y2="2.5" style="stroke-width:5;stroke:#9c70da;stroke-dasharray:4,3" />
+                        </svg>
+                      </dt>
+                      <dd>Planned</dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                  <button class="collapsible-trails" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    ICONS
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                  <div class="content-trails">
+                    <dl>
+                      <dt>
+                        <span class="icon">&#9632;</span>
+                      </dt><dd>Point of Interest</dd>
+                      <dt>
+                        <span class="icon train"></span>
+                      </dt><dd>Train Station</dd>
+                      <dt>
+                        <span class="icon">&#x50;</span>
+                      </dt><dd>Parking</dd>
+                      <dt>
+                        <span class="icon boat"></span>
+                      </dt><dd>Marina/Boating</dd>
+                      <dt>
+                        <span class="icon fishing"></span>
+                      </dt><dd>Fishing</dd>
+                    </dl>
+                    <p class="note">
+                      Note: Zoom in if you don't currently see icons
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- <div class="popup-one">
     <h1>BAY TRAIL SEGMENT</h1>
     <h2>Aquatic Park and Fort Mason</h2>
@@ -51,7 +162,7 @@
       San Fransisco Northern
       Waterfront</p>
   </div> -->
-  <div class="baytrail-legend-body">
+  <div class="baytrail-legend-body" style="left: 20%;">
     <button class="collapsible">Legend</button>
     <div class="content">
       <button class="collapsible-trails">TRAILS</button>
@@ -107,38 +218,42 @@
 
   <script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
   <script src='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script>
 
     function clouseModalWelcome() {
       document.getElementById("Welcome").style.display = "none";
     }
 
-    var coll = document.getElementsByClassName("collapsible");
+    // var coll = document.getElementsByClassName("collapsible");
 
-    for (var i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.maxHeight) {
-          content.style.maxHeight = null;
-        } else {
-          content.style.maxHeight = content.scrollHeight + "px";
-        }
-      });
-    }
-    var collTrails = document.getElementsByClassName("collapsible-trails");
+    // for (var i = 0; i < coll.length; i++) {
+    //   coll[i].addEventListener("click", function () {
+    //     this.classList.toggle("active");
+    //     var content = this.nextElementSibling;
+    //     if (content.style.maxHeight) {
+    //       content.style.maxHeight = null;
+    //     } else {
+    //       content.style.maxHeight = content.scrollHeight + "px";
+    //     }
+    //   });
+    // }
+    // var collTrails = document.getElementsByClassName("collapsible-trails");
 
-    for (var i = 0; i < collTrails.length; i++) {
-      collTrails[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.maxHeight !== null) {
-          content.style.maxHeight = content.scrollHeight + "px";
-        } else {
-          content.style.maxHeight = null;
-        }
-      });
-    }
+    // for (var i = 0; i < collTrails.length; i++) {
+    //   collTrails[i].addEventListener("click", function () {
+    //     this.classList.toggle("active");
+    //     var content = this.nextElementSibling;
+    //     if (content.style.maxHeight !== null) {
+    //       content.style.maxHeight = content.scrollHeight + "px";
+    //     } else {
+    //       content.style.maxHeight = null;
+    //     }
+    //   });
+    // }
 
     class LegendControl {
       constructor({ container = null } = {}) {

@@ -5,7 +5,9 @@
 .map{
   height: 96vh;
 }
-
+h5 {
+  margin: 0px;
+}
 .mapboxgl-ctrl-legend {
   pointer-events: none;
 }
@@ -223,9 +225,9 @@
 
 .content-trails {
   padding: 0px 0px;
-  max-height: 211px;
+  /* max-height: 211px; */
   overflow: hidden;
-  transition: max-height 0.2s ease-out;
+  /* transition: max-height 0.2s ease-out; */
   padding-bottom: 10px;
   border-bottom: 1px solid #B7C1CD;
 }
@@ -333,7 +335,30 @@
   margin: 0px;
   margin-bottom: 10px;
 }
+/* ICONS */
+.icon{
+  margin-right: 3px;
+}
 
+.boat {
+  content: url("../public/icons/ic-boat.svg");
+  height: 10px;
+  width: 10px;
+}
+.fishing {
+  content: url("../public/icons/ic-fish.svg");
+  height: 10px;
+  width: 10px;
+}
+.train {
+  content: url("../public/icons/ic-train.svg");
+  height: 10px;
+  width: 10px;
+}
+.note{
+  font-size: 11px;
+  margin-top: 5px;
+}
 
 @media (min-width: 1900px) and (max-width: 2549px){
   .baytrail-legend-body {
@@ -372,9 +397,9 @@
     font-size: 16px;
     padding: 13px 0px;
   }
-  .content-trails {
+  /* .content-trails {
     max-height: 212px;
-  }
+  } */
   /* Welcome Modal */
 
   .welcome-modal{
@@ -445,7 +470,7 @@
 
   .content-trails {
     padding: 0px 0px;
-    max-height: 320px;
+    /* max-height: 320px; */
   }
 
   .baytrail-legendLine {
