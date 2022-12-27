@@ -464,8 +464,30 @@
         toggle.appendChild(icon);
 
         toggle.addEventListener('click', this._toggleMeasurement.bind(this));
-
         this._controlContainer.appendChild(toggle);
+
+        const toggleFinish = document.createElement('button');
+        toggleFinish.setAttribute('title', 'Finish Button');
+        toggleFinish.setAttribute('id', 'finishbutton');
+        toggleFinish.setAttribute('style', `
+          display: none;
+          left: 38px;
+          position: absolute;
+          background: #3388ff;
+          color: white;
+          font-weight: 700;
+          top: 0px;
+          width: 59px;
+          border-radius: 4px;
+          border: 1px solid #ddd;`
+        );
+        
+        // toggleFinish.style.cssText();        
+        toggleFinish.textContent = 'Finish';
+        toggleFinish.addEventListener('click', this.finalizePath.bind(this) );
+
+        this._controlContainer.appendChild(toggleFinish);
+
       }
 
       createIcon() {
@@ -483,6 +505,11 @@
       }
 
       finalizePath() {
+        console.log('FINALICAAA');
+        if (!this._measurementOutput) {
+          return;
+        }
+        console.log('does this reaches??');
         this._finalized = true;
         this._tmpCoordinates = [[0, 0], [0, 0]];
         this._measurementOutput.tmpDistance = 0;
@@ -508,6 +535,7 @@
       }
 
       _enableMeasurement() {
+        document.getElementById('finishbutton').style.display = 'unset';
         this._controlContainer.classList.add('active');
         this._map.setLayoutProperty('measurement-path-line', 'visibility', 'visible');
         this._map.setLayoutProperty('measurement-path-line-casing', 'visibility', 'visible');
@@ -600,6 +628,7 @@
       }
 
       _disableMeasurement() {
+        document.getElementById('finishbutton').style.display = 'none';
         this._controlContainer.classList.remove('active');
         this._map.off('click', this._handleClick);
         this._map.off('mousemove', this._handleMouseMove);
