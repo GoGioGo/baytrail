@@ -498,16 +498,15 @@
       }
 
       finalizePath() {
-        console.log('FINALICAAA');
         if (!this._measurementOutput) {
           return;
         }
-        console.log('does this reaches??');
         this._finalized = true;
         this._tmpCoordinates = [[0, 0], [0, 0]];
         this._measurementOutput.tmpDistance = 0;
         this._updateTmpPath();
         this._updatePath();
+        this._toggleMeasurement();
       }
 
       newPath() {
@@ -625,13 +624,14 @@
         this._controlContainer.classList.remove('active');
         this._map.off('click', this._handleClick);
         this._map.off('mousemove', this._handleMouseMove);
-        this._map.setLayoutProperty('measurement-path-line', 'visibility', 'none');
-        this._map.setLayoutProperty('measurement-path-line-casing', 'visibility', 'none');
-        this._map.setLayoutProperty('measurement-tmp-path-line', 'visibility', 'none');
+        // COMMENTED TO PREVENT DELETE MEASURE LINE IN ORDER TO ADD POPUP
+        // this._map.setLayoutProperty('measurement-path-line', 'visibility', 'none');
+        // this._map.setLayoutProperty('measurement-path-line-casing', 'visibility', 'none');
+        // this._map.setLayoutProperty('measurement-tmp-path-line', 'visibility', 'none');
         this._map.removeControl(this._measurementOutput);
         this._measurementOutput = null;
         this._setCursor();
-        this._updatePath();
+        // this._updatePath();
       }
 
       _updateTmpPath() {

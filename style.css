@@ -171,10 +171,10 @@ h5 {
 }
 
 .active:after {
-  content: "\02C4";
+  /* content: "\02C4";
   content: url("../public/icons/ic-dropdown-up.svg");
   width: 18px;
-  height: 18px;
+  height: 18px; */
 }
 
 .collapsible-trails {
