@@ -555,8 +555,6 @@
                 <hr class="green-line light-green-line"></hr>
                 <hr class="green-line green-green-line"></hr>
                 <hr class="green-line pruple-line"></hr>
-                <hr class="green-line green-dots"></hr>
-                <hr class="green-line purple-dots"></hr>
                 <p>{{SURFACE}}</p>
                 <p>{{length}} miles</p>
                 <p class="opacity-text">Read more:</p>
@@ -795,7 +793,7 @@
                 <h2>{{location}}</h2>
                 <hr class="{{classline}}">
                 </hr>
-                <p>{{SURFACE}}</p>
+                {{SURFACE}}
                 <p>{{length}} miles</p>
                 <p class="opacity-text">Read more:</p>
                 <p class="more-text">Map By Numbers: Map 1 &#8213;
@@ -805,39 +803,41 @@
                 <p class="opacity-text">SegNo.: {{SEG_NUM}}</p>
               </div>
           `;
-          console.log('gay trabi0', e.features[0]);
 
           // <hr class="green-line">
           //       <hr class="green-line light-green-line"></hr>
           //       <hr class="green-line green-green-line"></hr>
           //       <hr class="green-line pruple-line"></hr>
-          const classline = '';
+          let classline = '';
           const LEGEND = e.features[0].properties.LEGEND;
           const SURFACE = e.features[0].properties.SURFACE;
+          let SURFACEVALUE = '<p>{{value}}</p>'
+          let strValue = e.features[0].properties.SURFACE;
           if (LEGEND === 'Bay Trail (off street)') {
             if (SURFACE === 'paved') {
               classline = 'green-line';
+              strValue = 'Paved';
             } else {
               classline = 'green-line light-green-line';
+              strValue = 'Dirt/Gravel';
             }
           } else if (LEGEND === 'Bay Trail (on street)' && SURFACE === 'paved')  {
             classline = 'green-line green-green-line';
-          } else if( LEGEND === 'Other Trail' && SURFACE === 'paved') {
+            strValue = 'On Street';
+          } else if( LEGEND === 'Other Trail') {
             classline = 'green-line pruple-line';
+            strValue = 'Existing';
           } else if ( LEGEND === 'Planned Other Trail') {
-            // purple dotted
-            classline = '';
+            classline = 'green-line purple-dots';
+            strValue = 'Planned';
           } else if ( LEGEND === 'Planned Bay Trail') {
-            // green dotted
-            classline = '';
+            classline = 'green-line green-dots';
+            strValue = 'Planned';
           }
           html = html.replace('{{classline}}', classline);
           html = html.replace('{{location}}', e.features[0].properties.Location)
-          if (e.features[0].properties.SURFACE === 'paved') {
-            html = html.replace('{{SURFACE}}', 'Paved')
-          } else {
-            html = html.replace('{{SURFACE}}', e.features[0].properties.SURFACE)
-          }
+
+          html = html.replace('{{SURFACE}}', SURFACEVALUE.replace('{{value}}', strValue));
           html = html.replace('{{length}}', (e.features[0].properties.Length).toFixed(2))
           html = html.replace('{{SEG_NUM}}', e.features[0].properties.SEG_NUM)
           popup.setLngLat(e.lngLat)
