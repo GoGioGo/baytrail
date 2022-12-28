@@ -288,7 +288,7 @@ h5 {
   background-color: #34593E;
   height: 0px;
   margin: 0px;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 .light-green-line{
   border: 2.5px solid #83BE6A !important;
@@ -562,7 +562,7 @@ h5 {
   .green-line{
     width: 80px;
     border: 3px solid #34593E;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
   .pruple-line {
     border: 3px solid #9572D4 !important;
@@ -729,7 +729,7 @@ h5 {
   .green-line{
     width: 107px;
     border: 3.5px solid #34593E;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
   .pruple-line {
     border: 3.5px solid #9572D4 !important;
