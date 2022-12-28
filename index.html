@@ -551,9 +551,9 @@
             let html = `
             <div class="popup-one">
               <h1>LINE MEASUREMENT</h1>
-              <p>Distance: </p>
+              <p class="label-name">Distance: </p>
               <h2>{{feet}} feet ({{miles}} miles)</h2>
-              <button id='deletebutton'> Delete </button>
+              <button id='deletebutton' class="btn-trash"><span class="ico trash""></span> Delete </button>
             </div>
             `;
             html = html.replace('{{feet}}', distanceFeet.toFixed(0));
