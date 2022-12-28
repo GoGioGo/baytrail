@@ -168,7 +168,11 @@
     function clouseModalWelcome() {
       document.getElementById("Welcome").style.display = "none";
     }
-
+    function separator(numb) {
+      var str = numb.toString().split(".");
+      str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      return str.join(".");
+    }
     // var coll = document.getElementsByClassName("collapsible");
 
     // for (var i = 0; i < coll.length; i++) {
@@ -552,11 +556,11 @@
             <div class="popup-one">
               <h1>LINE MEASUREMENT</h1>
               <p class="label-name">Distance: </p>
-              <h2>{{feet}} feet ({{miles}} miles)</h2>
+              <h2>  {{feet}} feet ({{miles}} miles)</h2>
               <button id='deletebutton' class="btn-trash"><span class="ico trash""></span> Delete </button>
             </div>
             `;
-            html = html.replace('{{feet}}', distanceFeet.toFixed(0));
+            html = html.replace('{{feet}}', separator(distanceFeet.toFixed(0)));
             html = html.replace('{{miles}}', distanceMiles.toFixed(2));
 
             this._popup.setLngLat(event.lngLat)
