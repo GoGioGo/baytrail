@@ -309,14 +309,14 @@ h5 {
 }
 .purple-dots{
   border: none;
-  border-top: 5px dotted #9572D4;
+  border: 3px dotted #9572D4;
   color: transparent;
   background-color: transparent;
   border-style: dashed;
 }
 .green-dots{
   border: none;
-  border-top: 5px dotted #34593E;
+  border: 3px dotted #34593E;
   color: transparent;
   background-color: transparent;
   border-style: dashed;
