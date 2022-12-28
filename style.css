@@ -290,6 +290,23 @@ h5 {
   margin: 0px;
   margin-bottom: 8px;
 }
+.light-green-line{
+  border: 2.5px solid #83BE6A !important;
+  background: #83be6a;
+}
+.green-green-line{
+  border: none;
+  background-color: #83BE6A !important;
+  height: 2.5px;
+  border-top: 1.5px solid #34593E;
+  border-bottom: 1.5px solid #34593E;
+  width: 66px;
+}
+.pruple-line{
+  border: 2.5px solid #9572D4;
+  color: #9572D4;
+  background-color: #9572D4;
+}
 .popup-one p{
   font-family: 'Nunito Sans';
   font-style: normal;
