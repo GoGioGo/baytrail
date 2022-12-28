@@ -307,6 +307,20 @@ h5 {
   color: #9572D4;
   background-color: #9572D4;
 }
+.purple-dots{
+  border: none;
+  border-top: 5px dotted #9572D4;
+  color: transparent;
+  background-color: transparent;
+  border-style: dashed;
+}
+.green-dots{
+  border: none;
+  border-top: 5px dotted #34593E;
+  color: transparent;
+  background-color: transparent;
+  border-style: dashed;
+}
 .popup-one p{
   font-family: 'Nunito Sans';
   font-style: normal;
