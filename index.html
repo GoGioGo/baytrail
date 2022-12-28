@@ -546,34 +546,17 @@
           const distanceMiles = this._measurementOutput._distance;
           const MILESTOFEET = 5280;
           const distanceFeet = distanceMiles ? distanceMiles * MILESTOFEET : 0;
-          console.log('distance Miles', distanceMiles);
           let html = `
           <div class="popup-one">
-                <h1>BAY TRAIL SEGMENT</h1>
-                <h2>{{location}}</h2>
-                <hr class="green-line"></hr>
-                <hr class="green-line light-green-line"></hr>
-                <hr class="green-line green-green-line"></hr>
-                <hr class="green-line pruple-line"></hr>
-                <p>{{SURFACE}}</p>
-                <p>{{length}} miles</p>
-                <p class="opacity-text">Read more:</p>
-                <p class="more-text">Map By Numbers: Map 1 &#8213;
-                  San Fransisco Northern
-                  Waterfront</p>
-                  <p />
-                <p class="opacity-text">SegNo.: {{SEG_NUM}}</p>
-              </div>
-          `
-          // html = html.replace('{{location}}', e.features[0].properties.Location)
-          // if (e.features[0].properties.SURFACE === 'paved') {
-          //   html = html.replace('{{SURFACE}}', 'Paved')
-          // } else {
-          //   html = html.replace('{{SURFACE}}', e.features[0].properties.SURFACE)
-          // }
-          // html = html.replace('{{length}}', (e.features[0].properties.Length).toFixed(2))
-          // html = html.replace('{{SEG_NUM}}', e.features[0].properties.SEG_NUM)
-          console.log('event ', event, event.point);
+            <h1>LINE MEASUREMENT</h1>
+            <p>Distance: </p>
+            <h2>{{feet}} feet ({{miles}} miles)</h2>
+            <button> Delete </button>
+          </div>
+          `;
+          html = html.replace('{{feet}}', distanceFeet.toFixed(0));
+          html = html.replace('{{miles}}', distanceMiles.toFixed(2));
+
           this._popup.setLngLat(event.lngLat)
             .setHTML(html)
             .addTo(this._map);
