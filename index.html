@@ -311,11 +311,11 @@
     }
 
     class MeasureControl {
-      constructor({ container = null } = {}) {
+      constructor({ container = null } = {}, popup ) {
         this._container = container;
         this._enabled = false;
         this._coordinates = [];
-
+        this._popup = popup;
         // Temporary coordiantes, to be updated quickly as mouse hover moves
         this._tmpCoordinates = [[0, 0], [0, 0]];
 
@@ -534,9 +534,51 @@
         this._map.setLayoutProperty('measurement-tmp-path-line', 'visibility', 'none');
         this._tmpCoordinates = [[NaN, NaN], [0, 0]]
 
+        this._handleClickPopup = event => {
+          event.preventDefault();
+          const features = map.queryRenderedFeatures(event.point, {
+            layers: [
+              'measurement-tmp-path-line',
+              'measurement-path-line',
+              'measurement-path-line-casing'
+            ]
+          });
+          const distanceMiles = this._measurementOutput._distance;
+          const MILESTOFEET = 5280;
+          const distanceFeet = distanceMiles ? distanceMiles * MILESTOFEET : 0;
+          console.log('distance Miles', distanceMiles);
+          let html = `
+          <div class="popup-one">
+                <h1>BAY TRAIL SEGMENT</h1>
+                <h2>{{location}}</h2>
+                <hr class="green-line">
+                </hr>
+                <p>{{SURFACE}}</p>
+                <p>{{length}} miles</p>
+                <p class="opacity-text">Read more:</p>
+                <p class="more-text">Map By Numbers: Map 1 &#8213;
+                  San Fransisco Northern
+                  Waterfront</p>
+                  <p />
+                <p class="opacity-text">SegNo.: {{SEG_NUM}}</p>
+              </div>
+          `
+          // html = html.replace('{{location}}', e.features[0].properties.Location)
+          // if (e.features[0].properties.SURFACE === 'paved') {
+          //   html = html.replace('{{SURFACE}}', 'Paved')
+          // } else {
+          //   html = html.replace('{{SURFACE}}', e.features[0].properties.SURFACE)
+          // }
+          // html = html.replace('{{length}}', (e.features[0].properties.Length).toFixed(2))
+          // html = html.replace('{{SEG_NUM}}', e.features[0].properties.SEG_NUM)
+          console.log('event ', event, event.point);
+          this._popup.setLngLat(event.lngLat)
+            .setHTML(html)
+            .addTo(this._map);
+        }
         this._handleClick = event => {
           event.preventDefault();
-
+          console.log('handle click', event);
           if (this._finalized) {
             this.newPath();
           } else {
@@ -544,7 +586,6 @@
             const features = map.queryRenderedFeatures(event.point, {
               layers: ['measurement-path-vertices']
             });
-
             // If the clicked point is the last point of the path, then close the path
             for (const feature of features) {
               if (feature.id === this._coordinates.length - 1) {
@@ -614,6 +655,7 @@
         this._measurementOutput = new MeasurementOutput();
         this._map.addControl(this._measurementOutput, 'top-right');
 
+        this._map.off('click', 'measurement-path-line', this._handleClickPopup);
         this._map.on('click', this._handleClick);
         this._map.on('mousemove', this._handleMouseMove);
         this._map.on('mouseleave', 'measurement-path-vertices', this._handleLeaveFeature);
@@ -624,12 +666,13 @@
         this._controlContainer.classList.remove('active');
         this._map.off('click', this._handleClick);
         this._map.off('mousemove', this._handleMouseMove);
+        this._map.on('click', 'measurement-path-line', this._handleClickPopup);
         // COMMENTED TO PREVENT DELETE MEASURE LINE IN ORDER TO ADD POPUP
         // this._map.setLayoutProperty('measurement-path-line', 'visibility', 'none');
         // this._map.setLayoutProperty('measurement-path-line-casing', 'visibility', 'none');
         // this._map.setLayoutProperty('measurement-tmp-path-line', 'visibility', 'none');
         this._map.removeControl(this._measurementOutput);
-        this._measurementOutput = null;
+        // this._measurementOutput = null;
         this._setCursor();
         // this._updatePath();
       }
@@ -695,7 +738,8 @@
         });
 
         map.once('load', () => {
-          this.popup = new this.mapboxgl.Popup()
+          this.popup = new this.mapboxgl.Popup();
+          this.measurePopup = new this.mapboxgl.Popup();
 
           this.metricScaleControl = new this.mapboxgl.ScaleControl({ unit: 'metric' });
           this.imperialScaleControl = new this.mapboxgl.ScaleControl({ unit: 'imperial' });
@@ -714,7 +758,7 @@
           this.legendControl = new LegendControl();
           map.addControl(this.legendControl, 'bottom-left');
 
-          this.measureControl = new MeasureControl();
+          this.measureControl = new MeasureControl( undefined , this.measurePopup);
           map.addControl(this.measureControl, 'top-left');
 
           addSource(this.popup);
