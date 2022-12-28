@@ -506,11 +506,11 @@ h5 {
 
 @media (min-width: 0px) and (max-width: 900px){
   .welcome-modal{
-    top: 66px;
+    /* top: 66px; */
   }
 }
 @media (min-width: 901px) and (max-width: 1200px){
   .welcome-modal{
-    top: 153px;
+    /* top: 153px; */
   }
 }
