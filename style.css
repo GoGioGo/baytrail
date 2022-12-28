@@ -292,34 +292,36 @@ h5 {
 }
 .light-green-line{
   border: 2.5px solid #83BE6A !important;
-  background: #83be6a;
+  background: #83be6a !important;
 }
 .green-green-line{
   border: none;
   background-color: #83BE6A !important;
   height: 2.5px;
-  border-top: 1.5px solid #34593E;
-  border-bottom: 1.5px solid #34593E;
+  border-top: 1.5px solid #34593E !important;
+  border-bottom: 1.5px solid #34593E !important;
   width: 66px;
 }
 .pruple-line{
-  border: 2.5px solid #9572D4;
-  color: #9572D4;
-  background-color: #9572D4;
+  border: 2.5px solid #9572D4 !important;
+  color: #9572D4 !important;
+  background-color: #9572D4 !important;
 }
 .purple-dots{
   border: none;
-  border: 3px dotted #9572D4;
+  border: 3px dashed #9572D4 !important;
   color: transparent;
   background-color: transparent;
   border-style: dashed;
+  height: 0px;
 }
 .green-dots{
   border: none;
-  border: 3px dotted #83BE6A;
+  border: 3px dashed #83BE6A!important;
   color: transparent;
   background-color: transparent;
   border-style: dashed;
+  height: 0px;
 }
 .popup-one p{
   font-family: 'Nunito Sans';
@@ -538,6 +540,28 @@ h5 {
     border: 3px solid #34593E;
     margin-bottom: 13px;
   }
+  .pruple-line {
+    border: 3px solid #9572D4 !important;
+  }
+  .green-green-line {
+    background-color: #83BE6A !important;
+    height: 3px;
+    border: none;
+    border-top: 2px solid #34593E !important;
+    border-bottom: 2px solid #34593E !important;
+  }
+  .light-green-line {
+    border: 3px solid #83BE6A !important;
+    background: #83be6a;
+  }
+  .purple-dots {
+    border: none;
+    border: 4px dashed #9572D4 !important;
+  }
+  .green-dots {
+    border: none;
+    border: 4px dashed #83BE6A !important;
+  }
   .popup-one p{
     font-weight: 400;
     font-size: 18px;
@@ -668,6 +692,28 @@ h5 {
     width: 107px;
     border: 3.5px solid #34593E;
     margin-bottom: 13px;
+  }
+  .pruple-line {
+    border: 3.5px solid #9572D4 !important;
+  }
+  .green-green-line {
+    background-color: #83BE6A !important;
+    height: 3px;
+    border: none;
+    border-top: 2.5px solid #34593E !important;
+    border-bottom: 2.5px solid #34593E !important;
+  }
+  .light-green-line {
+    border: 3.5px solid #83BE6A !important;
+    background: #83be6a;
+  }
+  .purple-dots {
+    border: none;
+    border: 5px dashed #9572D4 !important;
+  }
+  .green-dots {
+    border: none;
+    border: 5px dashed #83BE6A !important;
   }
   .popup-one p{
     font-weight: 400;
