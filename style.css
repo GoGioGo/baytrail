@@ -5,6 +5,25 @@
 .map{
   height: 96vh;
 }
+.card-header {
+  padding: 0px;
+  background-color: transparent;
+  border-bottom: transparent;
+}
+.card {
+  background-color: #fff0;
+  border: 1px solid rgb(0 0 0 / 0%);
+}
+.card-body {
+  padding: 0px;
+}
+.active, .collapsible:hover {
+  border: transparent;
+}
+button:focus {
+  outline: none;
+}
+
 h5 {
   margin: 0px;
 }
@@ -61,7 +80,7 @@ h5 {
   border-radius: 4px;
   z-index: 10;
   position: absolute;
-  width: 118px !important;
+  width: 140px !important;
   left: 26px;
   bottom: 21px;
   padding-bottom: 0px;
@@ -84,7 +103,6 @@ h5 {
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
-  line-height: 16px;
 }
 
 .other-title{
@@ -137,13 +155,13 @@ h5 {
   font-family: 'Nunito Sans';
 }
 
-.active, .collapsible:hover {
+/* .active, .collapsible:hover {
   border-bottom: 1px solid #B7C1CD;
-}
+} */
 
 .collapsible:after {
   content: '\02C5';
-  content: url("../public/icons/ic-dropdown-down.svg");
+  content: url("../public/icons/ic-dropdown-up.svg");
   color: #00303F;
   font-weight: bold;
   float: right;
@@ -175,11 +193,11 @@ h5 {
   color: #00303F;
   padding: 0px;
   padding: 10px 0px;
+  border-top: 1px solid #B7C1CD;
 }
-
 .collapsible-trails:after {
   content: '\02C5';
-  content: url("../public/icons/ic-dropdown-down.svg");
+  content: url("../public/icons/ic-dropdown-up.svg");
   color: #00303F;
   font-weight: bold;
   float: right;
@@ -215,6 +233,12 @@ h5 {
   width: 18px;
   height: 18px;
 }
+.collapsed:after {
+  content: "\02C4";
+  content: url("../public/icons/ic-dropdown-down.svg");
+  width: 18px;
+  height: 18px;
+}
 
 .content {
   padding: 0px 0px;
@@ -229,22 +253,12 @@ h5 {
   overflow: hidden;
   /* transition: max-height 0.2s ease-out; */
   padding-bottom: 10px;
-  border-bottom: 1px solid #B7C1CD;
 }
 
 /* Pop - up 1*/
 
 .popup-one{
-  box-sizing: border-box;
-  position: absolute;
-  width: 221px;
-  left: 68%;
-  top: 45%;
-  background: #FFFFFF;
-  border: 1px solid #E5EAEC;
-  box-shadow: 2px 3px 0px rgb(0 0 0 / 31%);
-  z-index: 10;
-  padding: 20px 15px;
+  background-color: transparent;
 }
 .popup-one h1{
   font-family: 'Nunito Sans';
@@ -323,6 +337,7 @@ h5 {
   font-size: 14px;
   cursor:pointer;
   cursor: hand;
+  font-family: auto;
 }
 
 .welcome-modal p{
@@ -336,8 +351,9 @@ h5 {
   margin-bottom: 10px;
 }
 /* ICONS */
-.icon{
-  margin-right: 3px;
+.icon {
+  margin-right: 7px;
+  font-size: 13px !important;
 }
 
 .boat {
@@ -357,15 +373,31 @@ h5 {
 }
 .note{
   font-size: 11px;
-  margin-top: 5px;
+  margin-top: 8px;
+  margin-bottom: 0px;
+}
+/* POPUP */
+.mapboxgl-popup-content {
+  background: #FFFFFF;
+    border: 1px solid #E5EAEC;
+  box-shadow: 2px 3px 0px rgb(0 0 0 / 31%);
+  z-index: 10;
+  padding: 20px 15px;
+}
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+  z-index: 11;
 }
 
 @media (min-width: 1900px) and (max-width: 2549px){
+  .map{
+    height: 97vh;
+  }
   .baytrail-legend-body {
     padding: 13px;
     background-color: #fff8e8;
-    width: 159px !important;
+    width: 187px !important;
     padding-bottom: 0px;
+    bottom: 29px;
   }
   
   .baytrail-legend-body h1 {
@@ -374,6 +406,7 @@ h5 {
   
   .baytrail-legend-body h3 {
     font-size: 18px;
+    margin-bottom: 8px;
   }
   
   .other-title{
@@ -381,7 +414,7 @@ h5 {
   }
   
   .baytrail-legend-body dt {
-    margin-top: 8px;
+    margin-bottom: 8px;
   }
   
   .baytrail-legend-body dd {
@@ -426,16 +459,68 @@ h5 {
     margin: 0px;
     margin-bottom: 14px;
   }
+  .note {
+    font-size: 15px;
+  }
+  .icon {
+    margin-right: 8px;
+    font-size: 20px !important;
+  }
+  .train {
+    height: 16px;
+    width: 17px;
+  }
+  .icon-p{
+    margin-right: 13px !important;
+  }
+  .boat {
+    height: 16px;
+    width: 17px;
+  }
+  .fishing {
+    height: 16px;
+    width: 17px;
+  }
+  /* Pop - up 1*/
+  .mapboxgl-popup-content {
+    padding: 26px 20px;
+    width: 293px;
+  }
+  .popup-one{
+    background-color: transparent;
+  }
+  .popup-one h1{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 5px;
+  }
+  .popup-one h2{
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+  }
+  .green-line{
+    width: 80px;
+    border: 3px solid #34593E;
+    margin-bottom: 13px;
+  }
+  .popup-one p{
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+  }
 }
 @media (min-width: 2555px) and (max-width: 5799px){
   .map{
-    height: 97vh;
+    height: 97.5vh;
   }
   .baytrail-legend-body {
     padding: 17px;
     background-color: #fff8e8;
-    width: 220px !important;
+    width: 248.89px !important;
     padding-bottom: 0px;
+    bottom: 32px;
   }
   
   .baytrail-legend-body h1 {
@@ -444,6 +529,7 @@ h5 {
   
   .baytrail-legend-body h3 {
     font-size: 24px;
+    margin-bottom: 16px;
   }
   
   .other-title{
@@ -451,7 +537,7 @@ h5 {
   }
   
   .baytrail-legend-body dt {
-    margin-top: 16px;
+    margin-bottom: 16px;
   }
   
   .baytrail-legend-body dd {
@@ -501,6 +587,60 @@ h5 {
     font-size: 24px;
     line-height: 28px;
     margin-bottom: 20px;
+  }
+  .note {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  .icon {
+    margin-right: 12px;
+    font-size: 27px !important;
+  }
+  .train {
+    height: 20px;
+    width: 24px;
+  }
+  .icon-p{
+    margin-right: 20px !important;
+  }
+  .boat {
+    height: 20px;
+    width: 24px;
+  }
+  .fishing {
+    height: 20px;
+    width: 24px;
+  }
+  /* Pop - up 1*/
+  .mapboxgl-popup-content {
+    padding: 36px 27px;
+    width: 391px;
+  }
+  .popup-one{
+    background-color: transparent;
+  }
+  .popup-one h1{
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 29px;
+    margin-bottom: 8px;
+  }
+  .popup-one h2{
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 18px;
+  }
+  .green-line{
+    width: 107px;
+    border: 3.5px solid #34593E;
+    margin-bottom: 13px;
+  }
+  .popup-one p{
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 13px;
   }
 }
 
