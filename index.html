@@ -537,31 +537,34 @@
         this._handleClickPopup = event => {
           event.preventDefault();
           console.log('_finalized', this._finalized);
-          const features = map.queryRenderedFeatures(event.point, {
-            layers: [
-              'measurement-tmp-path-line',
-              'measurement-path-line',
-              'measurement-path-line-casing'
-            ]
-          });
-          const distanceMiles = this._measurementOutput._distance;
-          const MILESTOFEET = 5280;
-          const distanceFeet = distanceMiles ? distanceMiles * MILESTOFEET : 0;
-          let html = `
-          <div class="popup-one">
-            <h1>LINE MEASUREMENT</h1>
-            <p>Distance: </p>
-            <h2>{{feet}} feet ({{miles}} miles)</h2>
-            <button id='deletebutton'> Delete </button>
-          </div>
-          `;
-          html = html.replace('{{feet}}', distanceFeet.toFixed(0));
-          html = html.replace('{{miles}}', distanceMiles.toFixed(2));
+          if ( this._finalized ) {
+            const features = map.queryRenderedFeatures(event.point, {
+              layers: [
+                'measurement-tmp-path-line',
+                'measurement-path-line',
+                'measurement-path-line-casing'
+              ]
+            });
+            const distanceMiles = this._measurementOutput._distance;
+            const MILESTOFEET = 5280;
+            const distanceFeet = distanceMiles ? distanceMiles * MILESTOFEET : 0;
+            let html = `
+            <div class="popup-one">
+              <h1>LINE MEASUREMENT</h1>
+              <p>Distance: </p>
+              <h2>{{feet}} feet ({{miles}} miles)</h2>
+              <button id='deletebutton'> Delete </button>
+            </div>
+            `;
+            html = html.replace('{{feet}}', distanceFeet.toFixed(0));
+            html = html.replace('{{miles}}', distanceMiles.toFixed(2));
 
-          this._popup.setLngLat(event.lngLat)
-            .setHTML(html)
-            .addTo(this._map);
-          document.getElementById('deletebutton')?.addEventListener('click',this._deleteDrawnLine.bind(this))
+            this._popup.setLngLat(event.lngLat)
+              .setHTML(html)
+              .addTo(this._map);
+            document.getElementById('deletebutton')?.addEventListener('click',this._deleteDrawnLine.bind(this))
+
+          }
         }
         this._handleClick = event => {
           event.preventDefault();
