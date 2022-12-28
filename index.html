@@ -536,6 +536,7 @@
 
         this._handleClickPopup = event => {
           event.preventDefault();
+          console.log('_finalized', this._finalized);
           const features = map.queryRenderedFeatures(event.point, {
             layers: [
               'measurement-tmp-path-line',
@@ -551,7 +552,7 @@
             <h1>LINE MEASUREMENT</h1>
             <p>Distance: </p>
             <h2>{{feet}} feet ({{miles}} miles)</h2>
-            <button> Delete </button>
+            <button id='deletebutton'> Delete </button>
           </div>
           `;
           html = html.replace('{{feet}}', distanceFeet.toFixed(0));
@@ -560,10 +561,10 @@
           this._popup.setLngLat(event.lngLat)
             .setHTML(html)
             .addTo(this._map);
+          document.getElementById('deletebutton')?.addEventListener('click',this._deleteDrawnLine.bind(this))
         }
         this._handleClick = event => {
           event.preventDefault();
-          console.log('handle click', event);
           if (this._finalized) {
             this.newPath();
           } else {
@@ -660,6 +661,15 @@
         // this._measurementOutput = null;
         this._setCursor();
         // this._updatePath();
+      }
+      _deleteDrawnLine() {
+        console.log('about to remove');
+        this._map.setLayoutProperty('measurement-path-line', 'visibility', 'none');
+        this._map.setLayoutProperty('measurement-path-line-casing', 'visibility', 'none');
+        this._map.setLayoutProperty('measurement-tmp-path-line', 'visibility', 'none');
+        this._measurementOutput = null;
+        this._updatePath();
+        this._popup.remove();
       }
 
       _updateTmpPath() {
