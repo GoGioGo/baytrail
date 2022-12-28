@@ -161,7 +161,7 @@ h5 {
 
 .collapsible:after {
   content: '\02C5';
-  content: url("../public/icons/ic-dropdown-up.svg");
+  content: url("../ic-dropdown-up.svg");
   color: #00303F;
   font-weight: bold;
   float: right;
@@ -197,7 +197,7 @@ h5 {
 }
 .collapsible-trails:after {
   content: '\02C5';
-  content: url("../public/icons/ic-dropdown-up.svg");
+  content: url("../ic-dropdown-up.svg");
   color: #00303F;
   font-weight: bold;
   float: right;
@@ -225,7 +225,7 @@ h5 {
 
 .collapsible-icons:after {
   content: '\02C5';
-  content: url("../public/icons/ic-dropdown-down.svg");
+  content: url("../ic-dropdown-down.svg");
   color: #00303F;
   font-weight: bold;
   float: right;
@@ -235,7 +235,7 @@ h5 {
 }
 .collapsed:after {
   content: "\02C4";
-  content: url("../public/icons/ic-dropdown-down.svg");
+  content: url("../ic-dropdown-down.svg");
   width: 18px;
   height: 18px;
 }
@@ -357,17 +357,17 @@ h5 {
 }
 
 .boat {
-  content: url("../public/icons/ic-boat.svg");
+  content: url("../ic-boat.svg");
   height: 10px;
   width: 10px;
 }
 .fishing {
-  content: url("../public/icons/ic-fish.svg");
+  content: url("../ic-fish.svg");
   height: 10px;
   width: 10px;
 }
 .train {
-  content: url("../public/icons/ic-train.svg");
+  content: url("../ic-train.svg");
   height: 10px;
   width: 10px;
 }
