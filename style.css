@@ -342,6 +342,15 @@ h5 {
   color: #007CAD !important;
   margin-bottom: 0px !important;
 }
+a{
+  color: #007CAD !important;
+  text-decoration: none;
+}
+a:hover{
+  color: #007CAD !important;
+  text-decoration: none;
+  font-weight: 600;
+}
 
 /* Welcome Modal */
 
@@ -583,6 +592,28 @@ h5 {
     border: none;
     border: 4px dashed #83BE6A !important;
   }
+  .pruple-line {
+    border: 3px solid #9572D4 !important;
+  }
+  .green-green-line {
+    background-color: #83BE6A !important;
+    height: 3px;
+    border: none;
+    border-top: 2px solid #34593E !important;
+    border-bottom: 2px solid #34593E !important;
+  }
+  .light-green-line {
+    border: 3px solid #83BE6A !important;
+    background: #83be6a;
+  }
+  .purple-dots {
+    border: none;
+    border: 4px dashed #9572D4 !important;
+  }
+  .green-dots {
+    border: none;
+    border: 4px dashed #83BE6A !important;
+  }
   .popup-one p{
     font-weight: 400;
     font-size: 18px;
@@ -723,6 +754,28 @@ h5 {
     width: 107px;
     border: 3.5px solid #34593E;
     margin-bottom: 4px;
+  }
+  .pruple-line {
+    border: 3.5px solid #9572D4 !important;
+  }
+  .green-green-line {
+    background-color: #83BE6A !important;
+    height: 3px;
+    border: none;
+    border-top: 2.5px solid #34593E !important;
+    border-bottom: 2.5px solid #34593E !important;
+  }
+  .light-green-line {
+    border: 3.5px solid #83BE6A !important;
+    background: #83be6a;
+  }
+  .purple-dots {
+    border: none;
+    border: 5px dashed #9572D4 !important;
+  }
+  .green-dots {
+    border: none;
+    border: 5px dashed #83BE6A !important;
   }
   .pruple-line {
     border: 3.5px solid #9572D4 !important;
