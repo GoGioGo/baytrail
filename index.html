@@ -166,6 +166,7 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="constants.js" ></script>
   <script>
 
     function clouseModalWelcome() {
@@ -653,6 +654,13 @@
         this._measurementOutput = new MeasurementOutput();
         this._map.addControl(this._measurementOutput, 'top-right');
 
+        this._map.on("mouseenter", ['measurement-path-line'], () => {
+          map.getCanvas().style.cursor = "pointer";
+        });
+
+        this._map.on("mouseleave", ['measurement-path-line'], () => {
+          map.getCanvas().style.cursor = "";
+        });
         this._map.off('click', 'measurement-path-line', this._handleClickPopup);
         this._map.on('click', this._handleClick);
         this._map.on('mousemove', this._handleMouseMove);
@@ -791,6 +799,14 @@
 
           }
         });
+        map.on("mouseenter", ['bayTrailLayer'], () => {
+          map.getCanvas().style.cursor = "pointer";
+        });
+
+        map.on("mouseleave", ['bayTrailLayer'], () => {
+          map.getCanvas().style.cursor = "";
+        });
+
         map.on('click', ['bayTrailLayer'], (e) => {
           let html = `
           <div class="popup-one">
@@ -801,19 +817,22 @@
                 {{SURFACE}}
                 <p>{{length}} miles</p>
                 <p class="opacity-text">Read more:</p>
-                <p class="more-text">Map By Numbers: Map 1 &#8213;
-                  San Fransisco Northern
-                  Waterfront</p>
-                  <p />
+                <p class="more-text">
+                  <a href="https://mtc.ca.gov/operations/regional-trails-parks/san-francisco-bay-trail/map-numbers/{{link}}" target="_blank">{{maptitle}}</a>
+                </p>
                 <p class="opacity-text">SegNo: {{SEG_NUM}}</p>
               </div>
           `;
+          
           let maintitle = 'BAY TRAIL SEGMENT';
           // <hr class="green-line">
           //       <hr class="green-line light-green-line"></hr>
           //       <hr class="green-line green-green-line"></hr>
           //       <hr class="green-line pruple-line"></hr>
-          let classline = '';
+          console.log('features prop', e.features[0]);
+          
+          const SEG_NUM = e.features[0].properties.SEG_NUM;
+          const mapValue = maptitles[mapkeys[SEG_NUM]];
           const LEGEND = e.features[0].properties.LEGEND;
           const SURFACE = e.features[0].properties.SURFACE;
           let SURFACEVALUE = '<p>{{value}}</p>'
@@ -841,6 +860,8 @@
             classline = 'green-line green-dots';
             strValue = 'Planned';
           }
+          html = html.replace('{{link}}', mapValue.link);
+          html = html.replace('{{maptitle}}', mapValue.title);
           html = html.replace('{{MAINTITLE}}', maintitle);
           html = html.replace('{{classline}}', classline);
           html = html.replace('{{location}}', e.features[0].properties.Location)
