@@ -10,6 +10,7 @@
       margin: 0;
       padding: 15px;
       overflow-y: hidden;
+      height: 100vh;
     }
 
     html,
@@ -26,6 +27,8 @@
     rel="stylesheet">
   <link href='https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
   <link href='style.css' rel='stylesheet' />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
@@ -43,7 +46,7 @@
   <div id="accordion" class="baytrail-legend-body">
     <div class="card">
       <div class="card-header" id="headingOne">
-        <button class=" collapsible" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"  aria-controls="collapseOne">
+        <button class="collapsible collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"  aria-controls="collapseOne">
           Legend
         </button>
       </div>
@@ -108,7 +111,7 @@
             </div>
             <div class="card">
               <div class="card-header" id="headingTwo">
-                <button class="collapsible-trails" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <button class="collapsible-trails collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                   ICONS
                 </button>
               </div>
@@ -267,7 +270,9 @@
     `;
       }
     }
-
+    $('.collapsible').on('click', function() {
+      $(this).find('i').toggleClass('fa-arrow-down fa-arrow-up');
+    });
     class MeasurementOutput {
       constructor({ container = null } = {}) {
         this._container = container;

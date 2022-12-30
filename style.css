@@ -3,7 +3,7 @@
 }
 
 .map{
-  height: 96vh;
+  height: 100%;
 }
 .card-header {
   padding: 0px;
@@ -77,14 +77,15 @@ h5 {
 .baytrail-legend-body {
   padding: 10px;
   background-color: #fff8e8;
-  border-radius: 4px;
+  border-radius: 4px 4px 0px 0px;
   z-index: 10;
   position: absolute;
   width: 140px !important;
   left: 26px;
-  bottom: 21px;
+  bottom: 15px;
   padding-bottom: 0px;
   border: 1px solid #B7C1CD;
+  border-bottom: none;
 }
 
 .baytrail-legend-body h1 {
@@ -448,15 +449,11 @@ h5 {
 }
 
 @media (min-width: 1900px) and (max-width: 2549px){
-  .map{
-    height: 97vh;
-  }
   .baytrail-legend-body {
     padding: 13px;
     background-color: #fff8e8;
     width: 187px !important;
     padding-bottom: 0px;
-    bottom: 29px;
   }
   
   .baytrail-legend-body h1 {
@@ -607,15 +604,11 @@ h5 {
   }
 }
 @media (min-width: 2555px) and (max-width: 5799px){
-  .map{
-    height: 97.5vh;
-  }
   .baytrail-legend-body {
     padding: 17px;
     background-color: #fff8e8;
     width: 248.89px !important;
     padding-bottom: 0px;
-    bottom: 32px;
   }
   
   .baytrail-legend-body h1 {
