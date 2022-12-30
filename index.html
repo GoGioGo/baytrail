@@ -168,7 +168,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script type="text/javascript" src="constants.js" ></script>
   <script>
-
+    let hoveredStateId = null;
     function clouseModalWelcome() {
       document.getElementById("Welcome").style.display = "none";
     }
@@ -785,7 +785,8 @@
       responseGeojson().then(res => {
         map.addSource('sf_baytrail', {
           type: 'geojson',
-          data: res
+          data: res,
+          generateId: true
         });
         map.addLayer({
           id: 'bayTrailLayer',
@@ -798,6 +799,22 @@
           layout: {
 
           }
+        });
+        map.addLayer({
+          id: 'bayTrailLayer_hover',
+          source: 'sf_baytrail',
+          type: 'line',
+          paint: {
+            'line-width': 4,
+            'line-color': '#00AEEF',
+            'line-opacity': [
+              'case',
+              ['boolean', ['feature-state', 'hover'], false],
+              1,
+              0
+            ]
+          },
+          layout: {}
         });
         map.on("mouseenter", ['bayTrailLayer'], () => {
           map.getCanvas().style.cursor = "pointer";
@@ -825,12 +842,6 @@
           `;
           
           let maintitle = 'BAY TRAIL SEGMENT';
-          // <hr class="green-line">
-          //       <hr class="green-line light-green-line"></hr>
-          //       <hr class="green-line green-green-line"></hr>
-          //       <hr class="green-line pruple-line"></hr>
-          console.log('features prop', e.features[0]);
-          
           const SEG_NUM = e.features[0].properties.SEG_NUM;
           const mapValue = maptitles[mapkeys[SEG_NUM]];
           const LEGEND = e.features[0].properties.LEGEND;
@@ -868,10 +879,30 @@
 
           html = html.replace('{{SURFACE}}', SURFACEVALUE.replace('{{value}}', strValue));
           html = html.replace('{{length}}', (e.features[0].properties.Length).toFixed(2))
-          html = html.replace('{{SEG_NUM}}', e.features[0].properties.SEG_NUM)
+          html = html.replace('{{SEG_NUM}}', e.features[0].properties.SEG_NUM);
           popup.setLngLat(e.lngLat)
             .setHTML(html)
-            .addTo(map)
+            .addTo(map);
+          popup.on('close', function(e){
+            if (hoveredStateId !== null) {
+              map.setFeatureState(
+                { source: 'sf_baytrail', id: hoveredStateId },
+                { hover: false }
+              );
+            }
+            hoveredStateId = null;
+          });
+            if (hoveredStateId !== null) {
+              map.setFeatureState(
+                { source: 'sf_baytrail', id: hoveredStateId },
+                { hover: false }
+              );
+            }
+            hoveredStateId = e.features[0].id;
+            map.setFeatureState(
+              { source: 'sf_baytrail', id: hoveredStateId },
+              { hover: true }
+            );
         })
       })
     }
