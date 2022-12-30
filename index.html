@@ -794,7 +794,7 @@
         map.on('click', ['bayTrailLayer'], (e) => {
           let html = `
           <div class="popup-one">
-                <h1>BAY TRAIL SEGMENT</h1>
+                <h1>{{MAINTITLE}}</h1>
                 <h2>{{location}}</h2>
                 <hr class="{{classline}}">
                 </hr>
@@ -808,7 +808,7 @@
                 <p class="opacity-text">SegNo: {{SEG_NUM}}</p>
               </div>
           `;
-
+          let maintitle = 'BAY TRAIL SEGMENT';
           // <hr class="green-line">
           //       <hr class="green-line light-green-line"></hr>
           //       <hr class="green-line green-green-line"></hr>
@@ -832,13 +832,16 @@
           } else if( LEGEND === 'Other Trail') {
             classline = 'green-line pruple-line';
             strValue = 'Existing';
+            maintitle = 'OTHER TRAIL SEGMENT';
           } else if ( LEGEND === 'Planned Other Trail') {
             classline = 'green-line purple-dots';
             strValue = 'Planned';
+            maintitle = 'OTHER TRAIL SEGMENT';
           } else if ( LEGEND === 'Planned Bay Trail') {
             classline = 'green-line green-dots';
             strValue = 'Planned';
           }
+          html = html.replace('{{MAINTITLE}}', maintitle);
           html = html.replace('{{classline}}', classline);
           html = html.replace('{{location}}', e.features[0].properties.Location)
 
