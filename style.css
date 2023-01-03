@@ -393,6 +393,8 @@ a:hover{
   cursor: hand;
   font-family: 'Nunito Sans';
   font-style: normal;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
 }
 
 .welcome-modal p{
