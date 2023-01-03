@@ -6,7 +6,7 @@
   height: 100%;
 }
 .mapboxgl-popup-close-button {
-  font-size: 22px;
+  font-size: 23px;
   font-family: 'Nunito Sans';
   font-style: normal;
   font-weight: 600;
@@ -391,7 +391,8 @@ a:hover{
   font-weight: 500 !important;
   cursor:pointer;
   cursor: hand;
-  font-family: auto;
+  font-family: 'Nunito Sans';
+  font-style: normal;
 }
 
 .welcome-modal p{
