@@ -749,8 +749,8 @@
         });
 
         map.once('load', () => {
-          this.popup = new this.mapboxgl.Popup();
-          this.measurePopup = new this.mapboxgl.Popup();
+          this.popup = new this.mapboxgl.Popup({ closeOnClick: false });
+          this.measurePopup = new this.mapboxgl.Popup({ closeOnClick: false });
 
           this.metricScaleControl = new this.mapboxgl.ScaleControl({ unit: 'metric' });
           this.imperialScaleControl = new this.mapboxgl.ScaleControl({ unit: 'imperial' });
@@ -879,13 +879,13 @@
             .setHTML(html)
             .addTo(map);
           popup.on('close', function(e){
-            if (hoveredStateId !== null) {
-              map.setFeatureState(
-                { source: 'sf_baytrail', id: hoveredStateId },
-                { hover: false }
-              );
-            }
-            hoveredStateId = null;
+            // if (hoveredStateId !== null) {
+            //   map.setFeatureState(
+            //     { source: 'sf_baytrail', id: hoveredStateId },
+            //     { hover: false }
+            //   );
+            // }
+            // hoveredStateId = null;
           });
             if (hoveredStateId !== null) {
               map.setFeatureState(
