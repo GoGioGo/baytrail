@@ -379,8 +379,8 @@ a:hover{
 
 .welcome-modal-header{
   position: absolute;
-  top: 7px;
-  right: 4px;
+  top: -3px;
+  right: 0px;
 }
 
 .welcome-modal button{
