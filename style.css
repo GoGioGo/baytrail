@@ -6,7 +6,13 @@
   height: 100%;
 }
 .mapboxgl-popup-close-button {
-  font-size: 20px;
+  font-size: 22px;
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 600;
+  color: #597882;
+  top: 4px;
+  right: 1px;
 }
 .card-header {
   padding: 0px;
