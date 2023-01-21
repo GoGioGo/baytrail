@@ -32,9 +32,9 @@
 </head>
 
 <body>
-  <div class="welcome-modal" id="Welcome">
+  <div class="welcome-modal" id="Welcome" role="dialog" aria-label="New features added to the Bay Trail map">
     <div class="welcome-modal-header">
-      <button onclick="clouseModalWelcome()">×</button>
+      <button onclick="clouseModalWelcome()" aria-label="Close welcome message">×</button>
     </div>
     <p>
       Hello. We’ve added new features to the Bay Trail interactive map.
@@ -50,7 +50,7 @@
           Legend
         </button>
       </div>
-      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
         <div class="card-body">
           <div id="accordion1">
             <div class="card">
