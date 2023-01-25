@@ -771,8 +771,123 @@
 
           this.measureControl = new MeasureControl( undefined , this.measurePopup);
           map.addControl(this.measureControl, 'top-left');
-
           addSource(this.popup);
+          console.log('adding layer', map.getStyle().layers);
+          map.loadImage('https://i.imgur.com/aRG9yfU.png', (error, image) => {
+            if (error) throw error;
+            // Add the image to the map style.
+            console.log('adding image fish');
+            map.addImage('fishing', image); 
+            }
+          );
+          map.loadImage('https://i.imgur.com/g8J4sVL.png', (error, image) => {
+            if (error) throw error;
+            // Add the image to the map style.
+            console.log('adding image boat');
+            map.addImage('boat', image); 
+            }
+          );
+          
+          map.addSource('fishing', {
+            type: 'vector',
+            url: 'mapbox://baytrail.2t2xifsw'
+          })
+          map.addLayer({
+              'id': 'park-volcanoes',
+              'type': 'symbol',
+              'source': 'fishing',
+              'source-layer': 'baytrail_fishing-be9hpp',
+              'layout': {
+                'icon-image': 'fishing',
+                'icon-size': 0.031
+              },
+              'paint': {
+                "icon-opacity": {
+                    stops: [[12.6, 0], [12.7, 1]]
+                }
+              },
+            }
+          );
+          // map.addLayer({
+          //   'id': 'boats',
+          //   'type': 'symbol',
+          //   'source': 'composite',
+          //   'source-layer': 'poi_label',
+          //   'layout': {
+          //     'icon-image': 'boat',
+          //     'icon-size': 0.05
+          //   },
+          //   'paint': {
+          //     "icon-opacity": {
+          //       stops: [[2, 0], [2.2, 1]]
+          //     }
+          //   },
+          //   "filter": [
+          //     "match", 
+          //     ["get", "type"], 
+          //     [
+          //       // "Attraction",
+          //       "Harbour",
+          //       // "Parking",
+          //       // 'train_station',
+          //       // "Train Station"
+          //     ], true, false
+          //   ]
+          // })
+          // map.addLayer({
+          //   'id': 'points',
+          //   'type': 'symbol',
+          //   'source': 'composite',
+          //   'source-layer': 'poi_label',
+          //   'layout': {
+          //     'icon-image': [
+          //       "case",
+          //       ["has", "maki_beta"],
+          //       ["coalesce", ["image", ["get", "maki_beta"] ], ["image", ["get", "maki"] ]],
+          //       ["image", ["get", "maki"]]
+          //     ],
+          //     // 'icon-image': 'monument-11',
+          //     'icon-size': 2,
+          //     "icon-allow-overlap": true,
+          //   // get the title name from the source's "title" property
+          //   // 'text-field': ['get', 'title'],
+          //   // 'text-font': [
+          //   // 'Open Sans Semibold',
+          //   // 'Arial Unicode MS Bold'
+          //   // ],
+          //   // 'text-offset': [0, 1.25],
+          //   // 'text-anchor': 'top'
+          //   },
+          //   "paint": {
+          //       // "circle-radius": 20,
+          //       // "circle-color": "#5b94c6",
+          //       // "circle-opacity": 0.5
+          //   },
+          //   "filter": [
+          //     "match", 
+          //     ["get", "type"], 
+          //     [
+          //       "Attraction",
+          //       "Harbour",
+          //       "Parking",
+          //       // 'train_station',
+          //       // "Train Station"
+          //     ], true, false]
+          // });
+          // // original filter in map:  
+          
+          // // attraction   "Attraction"
+          // // harbor       Harbour
+          // // parking    type : "Parking"
+          // // marker    Train Station
+          // // 
+          map.on('click', (e) => {
+            const bbox = [e.point.x , e.point.y ,
+            e.point.x , e.point.y ];
+            let features = map.queryRenderedFeatures(bbox, { layers: ['points'] });
+            console.log('features', features);
+            var zoom = map.getZoom();
+          });
         });
       }
     }
