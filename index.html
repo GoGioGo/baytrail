@@ -787,18 +787,128 @@
             map.addImage('boat', image); 
             }
           );
+          map.loadImage('https://i.imgur.com/7gFNpwT.png', (error, image) => {
+            if (error) throw error;
+            // Add the image to the map style.
+            console.log('adding image train');
+            map.addImage('train', image); 
+            }
+          );
+          map.loadImage('https://i.imgur.com/E70esU2.png', (error, image) => {
+            if (error) throw error;
+            // Add the image to the map style.
+            console.log('adding image poi');
+            map.addImage('poi', image); 
+            }
+          );
+          map.loadImage('https://i.imgur.com/SU67szf.png', (error, image) => {
+            if (error) throw error;
+            // Add the image to the map style.
+            console.log('adding image parking');
+            map.addImage('parkLetter', image); 
+            }
+          );
+          
           
           map.addSource('fishing', {
             type: 'vector',
             url: 'mapbox://baytrail.2t2xifsw'
-          })
+          });
+          map.addSource('pointsinterest', {
+            type: 'vector',
+            url: 'mapbox://baytrail.8ggnl0cn'
+          });
+          // sf_bay_trail_poi-27998j
+          map.addSource('trainstation', {
+            type: 'vector',
+            url: 'mapbox://baytrail.arfeymc9'
+          });
+          // sf_bay_trail_parking-0obtqq
+          map.addSource('parking', {
+            type: 'vector',
+            url: 'mapbox://baytrail.7dywrbuf'
+          });
+          //  sf_bay_trail_parking-0obtqq
+          map.addSource('marina', {
+            type: 'vector',
+            url: 'mapbox://baytrail.dypmytx9'
+          });
+          // sf_bay_trail_boating-4xwgwi
+          // WORKS FISHING
           map.addLayer({
-              'id': 'park-volcanoes',
+              'id': 'fish',
               'type': 'symbol',
               'source': 'fishing',
               'source-layer': 'baytrail_fishing-be9hpp',
               'layout': {
                 'icon-image': 'fishing',
+                'icon-size': 0.031
+              },
+              'paint': {
+                "icon-opacity": {
+                    stops: [[12.6, 0], [12.7, 1]]
+                }
+              },
+            }
+          );
+          // WORKS POI
+          map.addLayer({
+              'id': 'pointsofinterest',
+              'type': 'symbol',
+              'source': 'pointsinterest',
+              'source-layer': 'sf_bay_trail_poi-27998j',
+              'layout': {
+                'icon-image': 'poi',
+                'icon-size': 0.077
+              },
+              'paint': {
+                "icon-opacity": {
+                    stops: [[12.6, 0], [12.7, 1]]
+                }
+              },
+            }
+          );
+          // WORKS TRAINSTATION
+          map.addLayer({
+              'id': 'trainstation',
+              'type': 'symbol',
+              'source': 'trainstation',
+              'source-layer': 'sf_bay_trail_transit-1kb8dp',
+              'layout': {
+                'icon-image': 'train',
+                'icon-size': 0.031
+              },
+              'paint': {
+                "icon-opacity": {
+                    stops: [[12.6, 0], [12.7, 1]]
+                }
+              },
+            }
+          );
+          map.addLayer({
+              'id': 'parking',
+              'type': 'symbol',
+              'source': 'parking',
+              'source-layer': 'sf_bay_trail_parking-0obtqq',
+              'layout': {
+                'icon-image': 'parkLetter',
+                'icon-size': 0.054
+              },
+              'paint': {
+                "icon-opacity": {
+                    stops: [[12.6, 0], [12.7, 1]]
+                }
+              },
+            }
+          );
+          // WORKS MARINA
+          map.addLayer({
+              'id': 'marina',
+              'type': 'symbol',
+              'source': 'marina',
+              'source-layer': 'sf_bay_trail_boating-4xwgwi',
+              'layout': {
+                'icon-image': 'boat',
                 'icon-size': 0.031
               },
               'paint': {
