@@ -859,15 +859,53 @@
               'source-layer': 'sf_bay_trail_poi-27998j',
               'layout': {
                 'icon-image': 'poi',
-                'icon-size': 0.077
+                'icon-size': 0.077,
+                'text-field': ["to-string", ["get", "name"]],
+                'text-font': [
+                  "PT Sans Regular",
+                  "Arial Unicode MS Regular"
+                ],
+                'text-size': 10,
+                'text-line-height': 1.2,
+                'text-max-width': 10,
+                'text-justify': 'center',
+                'text-offset': [0, 0.65],
+                'text-anchor': 'top'
               },
               'paint': {
                 "icon-opacity": {
                     stops: [[12.6, 0], [12.7, 1]]
+                },
+                "text-opacity": {
+                  stops: [[12.6, 0], [12.7, 1]]
                 }
               },
             }
           );
+          // map.addLayer({
+          //   'id': 'pointsofinterest-labels',
+          //   'type': 'symbol',
+          //   'source': 'pointsinterest',
+          //   'source-layer': 'sf_bay_trail_poi-27998j',
+          //   'layout': {
+          //     'text-field': ["to-string", ["get", "name"]],
+          //     'text-font': [
+          //       "PT Sans Regular",
+          //       "Arial Unicode MS Regular"
+          //     ],
+          //     'text-size': 10,
+          //     'text-line-height': 1.2,
+          //     'text-max-width': 10,
+          //     'text-justify': 'center',
+          //     'text-offset': [0, 0.65],
+          //     'text-anchor': 'top'
+          //   },
+          //   'paint': {
+              // "text-opacity": {
+              //     stops: [[12.6, 0], [12.7, 1]]
+              // }
+          //   }
+          // });
           // WORKS TRAINSTATION
           map.addLayer({
               'id': 'trainstation',
