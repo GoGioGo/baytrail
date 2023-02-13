@@ -1146,13 +1146,13 @@
               .setHTML(html)
               .addTo(map);
             popup.on('close', function(e){
-              // if (hoveredStateId !== null) {
-              //   map.setFeatureState(
-              //     { source: 'sf_baytrail', id: hoveredStateId },
-              //     { hover: false }
-              //   );
-              // }
-              // hoveredStateId = null;
+              if (hoveredStateId !== null) {
+                map.setFeatureState(
+                  { source: 'sf_baytrail', id: hoveredStateId },
+                  { hover: false }
+                );
+              }
+              hoveredStateId = null;
             });
               if (hoveredStateId !== null) {
                 map.setFeatureState(
