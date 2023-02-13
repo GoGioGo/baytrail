@@ -36,9 +36,9 @@
     <div class="welcome-modal-header">
       <button onclick="clouseModalWelcome()" aria-label="Close welcome message">×</button>
     </div>
-    <p>
+    <!-- <p>
       Hello. We’ve added new features to the Bay Trail interactive map.
-    </p>
+    </p> -->
     <p style="margin: 0px;">
       Click or tap trail segments for length, type, and local area information.
     </p>
@@ -169,6 +169,7 @@
   <script type="text/javascript" src="constants.js" ></script>
   <script>
     let hoveredStateId = null;
+    let ismeasuring = false;
     function clouseModalWelcome() {
       document.getElementById("Welcome").style.display = "none";
     }
@@ -522,6 +523,7 @@
 
       _toggleMeasurement() {
         this._enabled = !this._enabled;
+        ismeasuring = this._enabled;
         this._coordinates.length = 0;
 
         if (this._enabled) {
@@ -1032,7 +1034,7 @@
           map.on('click', (e) => {
             const bbox = [e.point.x , e.point.y ,
             e.point.x , e.point.y ];
-            let features = map.queryRenderedFeatures(bbox, { layers: ['points'] });
+            let features = map.queryRenderedFeatures(bbox, { layers: ['pointsofinterest'] });
             console.log('features', features);
             var zoom = map.getZoom();
           });
@@ -1052,7 +1054,7 @@
           source: 'sf_baytrail',
           type: 'line',
           paint: {
-            'line-width': 3,
+            'line-width': 13,
             'line-color': 'transparent'
           },
           layout: {
@@ -1084,83 +1086,86 @@
         });
 
         map.on('click', ['bayTrailLayer'], (e) => {
-          let html = `
-          <div class="popup-one">
-                <h1>{{MAINTITLE}}</h1>
-                <h2>{{location}}</h2>
-                <hr class="{{classline}}">
-                </hr>
-                {{SURFACE}}
-                <p>{{length}} miles</p>
-                <p class="opacity-text">Read more:</p>
-                <p class="more-text">
-                  <a href="https://mtc.ca.gov/operations/regional-trails-parks/san-francisco-bay-trail/map-numbers/{{link}}" target="_blank">{{maptitle}}</a>
-                </p>
-              </div>
-          `;
           
-          let maintitle = 'BAY TRAIL SEGMENT';
-          const SEG_NUM = e.features[0].properties.SEG_NUM;
-          const mapValue = maptitles[mapkeys[SEG_NUM]];
-          const LEGEND = e.features[0].properties.LEGEND;
-          const SURFACE = e.features[0].properties.SURFACE;
-          let SURFACEVALUE = '<p>{{value}}</p>'
-          let strValue = e.features[0].properties.SURFACE;
-          if (LEGEND === 'Bay Trail (off street)') {
-            if (SURFACE === 'paved') {
-              classline = 'green-line';
-              strValue = 'Paved';
-            } else {
-              classline = 'green-line light-green-line';
-              strValue = 'Dirt/Gravel';
+          if ( !ismeasuring ) {
+            let html = `
+            <div class="popup-one">
+                  <h1>{{MAINTITLE}}</h1>
+                  <h2>{{location}}</h2>
+                  <hr class="{{classline}}">
+                  </hr>
+                  {{SURFACE}}
+                  <p>{{length}} miles</p>
+                  <p class="opacity-text">Read more:</p>
+                  <p class="more-text">
+                    <a href="https://mtc.ca.gov/operations/regional-trails-parks/san-francisco-bay-trail/map-numbers/{{link}}" target="_blank">{{maptitle}}</a>
+                  </p>
+                </div>
+            `;
+            
+            let maintitle = 'BAY TRAIL SEGMENT';
+            const SEG_NUM = e.features[0].properties.SEG_NUM;
+            const mapValue = maptitles[mapkeys[SEG_NUM]];
+            const LEGEND = e.features[0].properties.LEGEND;
+            const SURFACE = e.features[0].properties.SURFACE;
+            let SURFACEVALUE = '<p>{{value}}</p>'
+            let strValue = e.features[0].properties.SURFACE;
+            if (LEGEND === 'Bay Trail (off street)') {
+              if (SURFACE === 'paved') {
+                classline = 'green-line';
+                strValue = 'Paved';
+              } else {
+                classline = 'green-line light-green-line';
+                strValue = 'Dirt/Gravel';
+              }
+            } else if (LEGEND === 'Bay Trail (on street)' && SURFACE === 'paved')  {
+              classline = 'green-line green-green-line';
+              strValue = 'On Street';
+            } else if( LEGEND === 'Other Trail') {
+              classline = 'green-line pruple-line';
+              strValue = 'Existing';
+              maintitle = 'OTHER TRAIL SEGMENT';
+            } else if ( LEGEND === 'Planned Other Trail') {
+              classline = 'green-line purple-dots';
+              strValue = 'Planned';
+              maintitle = 'OTHER TRAIL SEGMENT';
+            } else if ( LEGEND === 'Planned Bay Trail') {
+              classline = 'green-line green-dots';
+              strValue = 'Planned';
             }
-          } else if (LEGEND === 'Bay Trail (on street)' && SURFACE === 'paved')  {
-            classline = 'green-line green-green-line';
-            strValue = 'On Street';
-          } else if( LEGEND === 'Other Trail') {
-            classline = 'green-line pruple-line';
-            strValue = 'Existing';
-            maintitle = 'OTHER TRAIL SEGMENT';
-          } else if ( LEGEND === 'Planned Other Trail') {
-            classline = 'green-line purple-dots';
-            strValue = 'Planned';
-            maintitle = 'OTHER TRAIL SEGMENT';
-          } else if ( LEGEND === 'Planned Bay Trail') {
-            classline = 'green-line green-dots';
-            strValue = 'Planned';
-          }
-          html = html.replace('{{link}}', mapValue.link);
-          html = html.replace('{{maptitle}}', mapValue.title);
-          html = html.replace('{{MAINTITLE}}', maintitle);
-          html = html.replace('{{classline}}', classline);
-          html = html.replace('{{location}}', e.features[0].properties.Location)
+            html = html.replace('{{link}}', mapValue.link);
+            html = html.replace('{{maptitle}}', mapValue.title);
+            html = html.replace('{{MAINTITLE}}', maintitle);
+            html = html.replace('{{classline}}', classline);
+            html = html.replace('{{location}}', e.features[0].properties.Location)
 
-          html = html.replace('{{SURFACE}}', SURFACEVALUE.replace('{{value}}', strValue));
-          html = html.replace('{{length}}', (e.features[0].properties.Length).toFixed(2))
-          html = html.replace('{{SEG_NUM}}', e.features[0].properties.SEG_NUM);
-          popup.setLngLat(e.lngLat)
-            .setHTML(html)
-            .addTo(map);
-          popup.on('close', function(e){
-            // if (hoveredStateId !== null) {
-            //   map.setFeatureState(
-            //     { source: 'sf_baytrail', id: hoveredStateId },
-            //     { hover: false }
-            //   );
-            // }
-            // hoveredStateId = null;
-          });
-            if (hoveredStateId !== null) {
+            html = html.replace('{{SURFACE}}', SURFACEVALUE.replace('{{value}}', strValue));
+            html = html.replace('{{length}}', (e.features[0].properties.Length).toFixed(2))
+            html = html.replace('{{SEG_NUM}}', e.features[0].properties.SEG_NUM);
+            popup.setLngLat(e.lngLat)
+              .setHTML(html)
+              .addTo(map);
+            popup.on('close', function(e){
+              // if (hoveredStateId !== null) {
+              //   map.setFeatureState(
+              //     { source: 'sf_baytrail', id: hoveredStateId },
+              //     { hover: false }
+              //   );
+              // }
+              // hoveredStateId = null;
+            });
+              if (hoveredStateId !== null) {
+                map.setFeatureState(
+                  { source: 'sf_baytrail', id: hoveredStateId },
+                  { hover: false }
+                );
+              }
+              hoveredStateId = e.features[0].id;
               map.setFeatureState(
                 { source: 'sf_baytrail', id: hoveredStateId },
-                { hover: false }
+                { hover: true }
               );
-            }
-            hoveredStateId = e.features[0].id;
-            map.setFeatureState(
-              { source: 'sf_baytrail', id: hoveredStateId },
-              { hover: true }
-            );
+          }
         })
       })
     }
